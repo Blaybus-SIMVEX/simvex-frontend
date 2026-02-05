@@ -1,5 +1,5 @@
-import React from 'react';
 import { useGLTF } from '@react-three/drei';
+import React from 'react';
 
 export function Model({ url }: { url: string }) {
   // useGLTF를 사용하여 모델 로드
