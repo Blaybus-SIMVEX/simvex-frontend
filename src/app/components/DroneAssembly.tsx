@@ -145,7 +145,7 @@ export function DroneAssembly({ onSelectPart }: DroneAssemblyProps) {
   };
 
   return (
-    <group ref={groupRef} onClick={handleBackgroundClick} scale={5} rotation={[-Math.PI/2, 0, 0]}>
+    <group ref={groupRef} onClick={handleBackgroundClick} scale={5} rotation={[0, 0, 0]}>
       <primitive
         object={clonedScene}
         position={[0, 0, 0]}
