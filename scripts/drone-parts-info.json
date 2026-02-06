@@ -1,0 +1,245 @@
+{
+  "Arm gear": {
+    "fileName": "Arm gear.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Beater disc": {
+    "fileName": "Beater disc.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Gearing": {
+    "fileName": "Gearing.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Impellar Blade": {
+    "fileName": "Impellar Blade.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Leg": {
+    "fileName": "Leg.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Main frame": {
+    "fileName": "Main frame.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Main frame_MIR": {
+    "fileName": "Main frame_MIR.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Nut": {
+    "fileName": "Nut.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  "Screw": {
+    "fileName": "Screw.glb",
+    "nodeCount": 1,
+    "meshCount": 1,
+    "nodes": [
+      {
+        "index": 0,
+        "name": "Solid1",
+        "translation": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    ]
+  }
+}
