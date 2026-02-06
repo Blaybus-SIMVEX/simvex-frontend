@@ -5,6 +5,7 @@ import { OrbitControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 
+// TODO: public/models 폴더는 삭제할 것
 export default function Home() {
   return (
     <main className="flex flex-col w-screen h-screen bg-white">
