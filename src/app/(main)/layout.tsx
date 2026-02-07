@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import Header from '@/shared/widgets/header/Header';
+import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
