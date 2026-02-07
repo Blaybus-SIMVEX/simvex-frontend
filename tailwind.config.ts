@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-pretendard)', 'sans-serif'],
+      },
       colors: {
         'common-white': '#FFF',
         'gray': {
