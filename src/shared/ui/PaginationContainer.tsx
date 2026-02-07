@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter, useSearchParams } from "next/navigation";
-import { Pagination } from "@/shared/ui/Pagination";
+import { Pagination } from '@/shared/ui/Pagination';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export function PaginationContainer({ totalPages }: { totalPages: number }) {
   const router = useRouter();
@@ -16,11 +16,5 @@ export function PaginationContainer({ totalPages }: { totalPages: number }) {
     router.push(`?${params.toString()}`);
   };
 
-  return (
-    <Pagination
-      totalPage={totalPages}
-      currentPage={currentPage}
-      setPage={handlePageChange}
-    />
-  );
+  return <Pagination totalPage={totalPages} currentPage={currentPage} setPage={handlePageChange} />;
 }

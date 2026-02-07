@@ -16,7 +16,8 @@ interface PaginationProps {
 export function Pagination({ totalPage, currentPage, setPage }: PaginationProps) {
   const pages = Array.from({ length: totalPage }, (_, i) => i + 1);
 
-  const baseButtonClass = 'cursor-pointer flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200';
+  const baseButtonClass =
+    'cursor-pointer flex items-center justify-center w-8 h-8 rounded-lg transition-colors duration-200';
 
   const arrowButtonClass =
     'text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent';
