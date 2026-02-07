@@ -1,7 +1,7 @@
 // TODO: 삭제 컴포넌트
 
 'use client';
-import { useApi } from "@/lib/useApi";
+import { useApi } from '@/lib/useApi';
 
 interface ObjectItem {
   id: number;
@@ -17,10 +17,10 @@ export default function ObjectGetTest() {
 
   const handleFetchList = async () => {
     try {
-      await GET("/api/objects");
-      console.log("목록 가져오기 성공!");
+      await GET('/api/objects');
+      console.log('목록 가져오기 성공!');
     } catch (e) {
-      console.error("에러 남:", e);
+      console.error('에러 남:', e);
     }
   };
 
@@ -34,15 +34,11 @@ export default function ObjectGetTest() {
         disabled={isLoading}
         className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-colors"
       >
-        {isLoading ? "로딩 중..." : "📋 오브젝트 목록 가져오기 (GET)"}
+        {isLoading ? '로딩 중...' : '📋 오브젝트 목록 가져오기 (GET)'}
       </button>
 
       {/* 에러 메시지 */}
-      {error && (
-        <div className="p-3 bg-red-100 text-red-600 rounded border border-red-200">
-          🚨 에러 발생: {error}
-        </div>
-      )}
+      {error && <div className="p-3 bg-red-100 text-red-600 rounded border border-red-200">🚨 에러 발생: {error}</div>}
 
       {/* 결과 데이터 보여주기 */}
       {data && (
