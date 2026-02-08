@@ -99,13 +99,7 @@ function EditablePart({
       <group ref={setGroup}>
         <primitive object={clonedScene} onClick={handleClick} />
       </group>
-      {isSelected && group && (
-        <TransformControls
-          object={group}
-          mode="translate"
-          onChange={handleTransformChange}
-        />
-      )}
+      {isSelected && group && <TransformControls object={group} mode="translate" onChange={handleTransformChange} />}
     </>
   );
 }
