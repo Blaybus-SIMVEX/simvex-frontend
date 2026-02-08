@@ -21,11 +21,7 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
 
       {/* Info Panel - Floating over 3D Viewer (Right side) */}
       <div className="absolute top-4 right-4 bottom-4 z-20 animate-slide-in-right">
-        <InfoModal
-          objectId={objectId}
-          onClose={() => setSelectedPartName(null)}
-          selectedPartName={selectedPartName}
-        />
+        <InfoModal objectId={objectId} onClose={() => setSelectedPartName(null)} selectedPartName={selectedPartName} />
       </div>
     </div>
   );

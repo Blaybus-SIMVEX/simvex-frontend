@@ -35,7 +35,9 @@ export default function StudyHeader({ objectId }: StudyHeaderProps) {
           {objectDetail?.name || '3D 뷰어'}
         </h1>
         <div className="flex gap-3 text-[#888888] text-[16px] font-medium">
-          {objectDetail?.categories?.map((category, index) => <span key={index}>#{category}</span>)}
+          {objectDetail?.categories?.map((category, index) => (
+            <span key={index}>#{category}</span>
+          ))}
           {/* Fallback for static display if categories are empty, matching mockup '#자동차 #기계공학' style */}
           {!objectDetail?.categories && (
             <>
