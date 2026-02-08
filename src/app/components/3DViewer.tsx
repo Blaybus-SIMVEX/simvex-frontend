@@ -26,11 +26,19 @@ export default function ThreeDViewer({
 }: ThreeDViewerProps) {
   const [assemblyStep, setAssemblyStep] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  const hasInteracted = useState(false); // Using state to trigger re-renders if needed, or better, a ref.
+  // Actually, just checking if assemblyStep is 0 might be enough, but the user might move it back to 0.
+  // Let's use a ref for the timer.
 
-  // Show tooltip initially after a delay
   useEffect(() => {
     const timer = setTimeout(() => {
-        setShowTooltip(true);
+        // Only show if the user hasn't moved the slider yet (assemblyStep is still 0) 
+        // and we haven't explicitly dismissed it. 
+        // To be safe, we just show it. The dismissal logic handles the hiding.
+        // But if I want to be strict:
+        if (assemblyStep === 0) {
+            setShowTooltip(true);
+        }
     }, 500); // 0.5s delay
     return () => clearTimeout(timer);
   }, []);
