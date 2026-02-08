@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 
@@ -231,7 +232,7 @@ if (fs.existsSync(outputPath)) {
                  p.displayName = existingName;
             }
         });
-    } catch(e) {}
+    } catch {}
 }
 
 fs.writeFileSync(outputPath, JSON.stringify(config, null, 2));

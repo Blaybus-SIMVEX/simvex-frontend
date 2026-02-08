@@ -1,11 +1,11 @@
 'use client';
 
 import { DroneAssembly } from '@/app/components/DroneAssembly';
-import { Model } from '@/app/components/Model';
+
 import { V4EngineAssembly } from '@/app/components/V4EngineAssembly';
-import { Environment, OrbitControls, Stage } from '@react-three/drei';
+import { OrbitControls, Stage } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Leva } from 'leva';
+
 import { Suspense, useState } from 'react';
 
 interface SelectedPartInfo {

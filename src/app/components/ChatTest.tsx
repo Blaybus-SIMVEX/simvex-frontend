@@ -19,7 +19,7 @@ export default function ChatTest() {
         conversationHistory: [],
       });
       console.log('전송 성공!');
-    } catch (e) {
+    } catch {
       console.error('실패...');
     }
   };

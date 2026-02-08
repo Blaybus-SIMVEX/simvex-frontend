@@ -2,8 +2,8 @@
 
 import { TransformControls, useGLTF } from '@react-three/drei';
 import { ThreeEvent } from '@react-three/fiber';
-import { button, folder, useControls } from 'leva';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { button, useControls } from 'leva';
+import React, { useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
 
 const MODEL_BASE_PATH = '/models/V4_Engine';
@@ -52,16 +52,15 @@ function EditablePart({
 }: EditablePartProps) {
   const { scene } = useGLTF(url);
   const clonedScene = useMemo(() => scene.clone(), [scene]);
-  const groupRef = useRef<THREE.Group>(null);
-  const transformControlsRef = useRef<any>(null);
+  const [group, setGroup] = useState<THREE.Group | null>(null);
 
   // position/rotation prop이 변경되면 group에 적용
   useEffect(() => {
-    if (groupRef.current) {
-      groupRef.current.position.set(position[0], position[1], position[2]);
-      groupRef.current.rotation.set(rotation[0], rotation[1], rotation[2]);
+    if (group) {
+      group.position.set(position[0], position[1], position[2]);
+      group.rotation.set(rotation[0], rotation[1], rotation[2]);
     }
-  }, [position, rotation]);
+  }, [group, position, rotation]);
 
   // 하이라이트 효과 적용
   useMemo(() => {
@@ -90,20 +89,19 @@ function EditablePart({
 
   // TransformControls 드래그 시 실시간 상태 업데이트
   const handleTransformChange = () => {
-    if (groupRef.current) {
-      onTransformChange(partKey, groupRef.current.position.clone(), groupRef.current.rotation.clone());
+    if (group) {
+      onTransformChange(partKey, group.position.clone(), group.rotation.clone());
     }
   };
 
   return (
     <>
-      <group ref={groupRef}>
+      <group ref={setGroup}>
         <primitive object={clonedScene} onClick={handleClick} />
       </group>
-      {isSelected && groupRef.current && (
+      {isSelected && group && (
         <TransformControls
-          ref={transformControlsRef}
-          object={groupRef.current}
+          object={group}
           mode="translate"
           onChange={handleTransformChange}
         />
@@ -137,7 +135,7 @@ export function V4EngineAssemblyEditor() {
   });
 
   // Leva 컨트롤 - 선택된 부품 조정
-  const levaControls = useControls('조립 에디터', {
+  useControls('조립 에디터', {
     '선택된 부품': {
       value: selectedPart ? PART_NAMES[selectedPart] || selectedPart : '없음',
       editable: false,
@@ -161,7 +159,7 @@ export function V4EngineAssemblyEditor() {
   });
 
   // 선택된 부품의 Leva 컨트롤
-  const selectedControls = useControls(
+  useControls(
     selectedPart ? `${PART_NAMES[selectedPart]} 위치` : '부품 선택 필요',
     selectedPart
       ? {
