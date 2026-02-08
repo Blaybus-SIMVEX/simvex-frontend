@@ -1,11 +1,12 @@
 // TODO: 나중에 삭제해야함
-
 import ChatTest from '@/app/components/ChatTest';
 import ObjectGetTest from '@/app/components/ObjectGetTest';
 
 export default function Chat() {
-  return <div>
-    <ChatTest />
-    <ObjectGetTest />
-  </div>
+  return (
+    <div className="bg-white">
+      <ChatTest />
+      <ObjectGetTest />
+    </div>
+  );
 }
