@@ -3,13 +3,12 @@
 import { clsx } from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-// TODO: 카테고리 id는 백엔드쪽에서 일치시켜야함
 const CATEGORIES = [
   { id: 'ALL', label: '전체' },
-  { id: 'MECHANICAL', label: '기계공학' },
+  { id: 'MECHANICAL_ENGINEERING', label: '기계공학' },
   { id: 'AUTOMOTIVE', label: '자동차' },
-  { id: 'AVIATION', label: '항공' },
-  { id: 'MACHINE_TOOL', label: '공작기계' },
+  { id: 'AEROSPACE', label: '항공' },
+  { id: 'MACHINE_TOOLS', label: '공작기계' },
   { id: 'ROBOTICS', label: '로봇공학' },
 ];
 
