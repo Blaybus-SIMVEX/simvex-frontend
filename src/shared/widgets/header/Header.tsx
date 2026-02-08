@@ -3,7 +3,7 @@ import TopNavigation from '@/shared/widgets/navigation/TopNavigation';
 
 export default function Header() {
   return (
-    <header className="flex w-full px-10 gap-2.5">
+    <header className="flex w-full px-10 py-3 gap-2.5">
       <div className="flex items-center gap-7.5">
         <Logo />
         <TopNavigation />

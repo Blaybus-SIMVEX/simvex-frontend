@@ -39,6 +39,16 @@ const nextConfig: NextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'kr.object.ncloudstorage.com', // 👈 에러에 뜬 도메인
+        port: '',
+        pathname: '/**', // 모든 경로 허용
+      },
+    ],
+  },
 };
 
 export default nextConfig;

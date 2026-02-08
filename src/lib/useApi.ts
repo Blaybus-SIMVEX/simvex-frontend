@@ -25,15 +25,21 @@ export function useApi<T = unknown>() {
     [],
   );
 
+  const GET = useCallback((url: string) => execute(url, 'GET'), [execute]);
+  const POST = useCallback((url: string, body?: unknown) => execute(url, 'POST', body), [execute]);
+  const PUT = useCallback((url: string, body?: unknown) => execute(url, 'PUT', body), [execute]);
+  const PATCH = useCallback((url: string, body?: unknown) => execute(url, 'PATCH', body), [execute]);
+  const DELETE = useCallback((url: string) => execute(url, 'DELETE'), [execute]);
+
   return {
     data,
     isLoading,
     error,
 
-    GET: (url: string) => execute(url, 'GET'),
-    POST: (url: string, body?: unknown) => execute(url, 'POST', body),
-    PUT: (url: string, body?: unknown) => execute(url, 'PUT', body),
-    PATCH: (url: string, body?: unknown) => execute(url, 'PATCH', body),
-    DELETE: (url: string) => execute(url, 'DELETE'),
+    GET,
+    POST,
+    PUT,
+    PATCH,
+    DELETE,
   };
 }
