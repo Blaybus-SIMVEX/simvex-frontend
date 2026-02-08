@@ -9,13 +9,19 @@ import { useEffect } from 'react';
 
 export function CardList() {
   const searchParams = useSearchParams();
-  const page = Number(searchParams.get('page')) || 1;
+  const page = searchParams.get('page') || '1';
+  const category = searchParams.get('category');
 
   const { GET, data, isLoading, error } = useApi<IObjects>();
 
   useEffect(() => {
-    GET(`/api/objects?page=${page}`);
-  }, [page, GET]);
+    const params = new URLSearchParams();
+    params.set('page', page);
+    if (category && category !== 'ALL') {
+      params.set('category', category);
+    }
+    GET(`/api/objects?${params.toString()}`);
+  }, [page, GET, category]);
 
   if (isLoading) {
     return (
