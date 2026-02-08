@@ -9,13 +9,13 @@ import { IObjects } from '@/features/study/types';
 
 export function CardList() {
   const searchParams = useSearchParams();
-  const page = Number(searchParams.get('page')) || 0;
+  const page = Number(searchParams.get('page')) || 1;
 
   const { GET, data, isLoading, error } = useApi<IObjects>();
 
   useEffect(() => {
     GET(`/api/objects?page=${page}`);
-  }, [page]);
+  }, [page, GET]);
 
   if (isLoading) {
     return (
@@ -44,7 +44,7 @@ export function CardList() {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2.5 gap-y-3 w-full">
         {content.map((item) => (
           <ObjectCard key={item.id} data={item} />
         ))}

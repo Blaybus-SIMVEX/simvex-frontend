@@ -12,7 +12,7 @@ export default function ObjectCard({ data, ...rest }: Props) {
     <article
       className="
         flex flex-col
-        w-[373px]
+        w-[331px]
         bg-white
         rounded-[8px]
         shadow-[0_0_10px_0_rgba(0,0,0,0.10)]
@@ -28,7 +28,7 @@ export default function ObjectCard({ data, ...rest }: Props) {
           <h3 className="text-[22px] text-gray-900 font-bold">{data.name}</h3>
           <p className="text-[16px] text-gray-600 truncate">{data.description}</p>
         </div>
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-1">
           {data.categories.map((tagName: string) => (
             <Tags key={tagName} tagName={tagName} />
           ))}
