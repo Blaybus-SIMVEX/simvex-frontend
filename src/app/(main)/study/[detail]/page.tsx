@@ -4,6 +4,7 @@ import ThreeDViewer from '@/app/components/3DViewer';
 import AIAssistant from '@/app/components/AIAssistant';
 import MemoPad from '@/app/components/MemoPad';
 import InfoModal from '@/app/components/InfoModal';
+import ChevronLeftyIcon from '@/assets/icons/chevron-lefty.svg';
 import { useObjectDetail } from '@/features/3d-viewer/api/use3DViewer';
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
@@ -52,35 +53,34 @@ export default function StudyDetail() {
   return (
     <div className="flex flex-col w-full h-[calc(100vh-64px)] bg-[#F5F5F5] px-10 pt-8 pb-6 gap-4">
 
-      {/* Header Area */}
-      <div className="flex items-center gap-3 h-16 shrink-0">
+      {/* Header Area - Vertical Stack */}
+      <div className="flex flex-col gap-5 items-start mb-6 shrink-0">
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="w-10 h-10 flex items-center justify-center rounded-lg bg-white border border-[#E5E5E5] text-[#333333] shadow-sm hover:bg-gray-50 transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-[6px] bg-[#EDEDED] border border-[#ADADAD] text-[#ADADAD] shadow-sm hover:bg-[#E0E0E0] transition-colors"
         >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
+            <ChevronLeftyIcon width={24} height={24} color="#AEAEAE"/>
         </button>
 
         {/* Title & Tags */}
-        <div className="flex items-center gap-2">
-            <h1 className="text-[32px] font-bold text-[#111111]">
-                {objectDetail?.name || '학습 콘텐츠'}
+        <div className="flex flex-col gap-3">
+            <h1 className="text-[32px] font-bold text-[#111111] leading-tight tracking-tight">
+                {objectDetail?.name || '3D 뷰어'}
             </h1>
-            <div className="flex gap-[10px]">
-                <span className="px-2.5 py-1 bg-[#E8F3FF] text-[#0066FF] text-[12px] font-semibold rounded-[4px]">
-                    학습중
-                </span>
+            <div className="flex gap-3 text-[#888888] text-[16px] font-medium">
                 {objectDetail?.categories?.map((category, index) => (
-                  <span
-                    key={index}
-                    className="px-2.5 py-1 bg-[#F5F5F5] text-[#666666] text-[12px] font-medium rounded-[4px] border border-[#E5E5E5]"
-                  >
-                    {category}
+                  <span key={index}>
+                    #{category}
                   </span>
                 ))}
+                 {/* Fallback for static display if categories are empty, matching mockup '#자동차 #기계공학' style */}
+                 {!objectDetail?.categories && (
+                    <>
+                        <span>#자동차</span>
+                        <span>#기계공학</span>
+                    </>
+                 )}
             </div>
         </div>
       </div>
