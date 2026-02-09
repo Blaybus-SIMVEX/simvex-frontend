@@ -8,8 +8,8 @@ import { Suspense, useEffect, useState, useRef } from 'react';
 import { useComponents } from '@/features/3d-viewer/api/use3DViewer';
 
 // Config imports
-// import droneConfig from '../../../public/models/Drone/config.json';
-// import engineConfig from '../../../public/models/V4_Engine/config.json';
+import droneConfig from '../../../public/models/Drone/config.json';
+import engineConfig from '../../../public/models/V4_Engine/config.json';
 import robotArmConfig from '../../../public/models/Robot Arm/config.json';
 import machineViceConfig from '../../../public/models/Machine Vice/config.json';
 import leafSpringConfig from '../../../public/models/Leaf Spring/config.json';
@@ -25,8 +25,8 @@ type ModelType = 'engine' | 'drone' | 'robot-arm' | 'robot-gripper' | 'machine-v
 
 // 모델 타입별 config 매핑
 const MODEL_CONFIGS: Record<string, ProductConfig> = {
-  // drone: droneConfig as unknown as ProductConfig,
-  // engine: engineConfig as unknown as ProductConfig,
+  drone: droneConfig as unknown as ProductConfig,
+  engine: engineConfig as unknown as ProductConfig,
   'robot-arm': robotArmConfig as unknown as ProductConfig,
   'machine-vice': machineViceConfig as unknown as ProductConfig,
   'leaf-spring': leafSpringConfig as unknown as ProductConfig,
@@ -91,14 +91,15 @@ export default function ThreeDViewer({ onSelectPart, modelType }: ThreeDViewerPr
 
   const handleZoomIn = () => {
     if (orbitControlsRef.current) {
-      orbitControlsRef.current.dollyIn(1.2);
+      orbitControlsRef.current.dollyOut(1.2);
       orbitControlsRef.current.update();
     }
+
   };
 
   const handleZoomOut = () => {
-    if (orbitControlsRef.current) {
-      orbitControlsRef.current.dollyOut(1.2);
+   if (orbitControlsRef.current) {
+      orbitControlsRef.current.dollyIn(1.2);
       orbitControlsRef.current.update();
     }
   };
@@ -106,9 +107,9 @@ export default function ThreeDViewer({ onSelectPart, modelType }: ThreeDViewerPr
   return (
     <div className="relative w-full h-full bg-[#BCCCDC] overflow-hidden group">
       {/* 3D Canvas */}
-      <Canvas camera={{ position: [5, 5, 5], fov: 50 }} className="w-full h-full">
+      <Canvas camera={{ position: [2.5, 2.5, 2.5], fov: 40 }} className="w-full h-full">
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.6} adjustCamera={false}>
+          <Stage environment="city" intensity={0.6} adjustCamera={false} shadows={false}>
             {currentConfig ? (
               <DynamicAssembly
                 config={currentConfig}

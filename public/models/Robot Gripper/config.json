@@ -1,0 +1,79 @@
+{
+  "productName": "로봇 그리퍼",
+  "modelFolder": "Robot Gripper",
+  "scale": 1,
+  "parts": [
+    {
+      "nodeName": "BaseMountingBracket",
+      "displayName": "마운팅 브라켓",
+      "fileName": "Base Mounting bracket.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 1, 0]
+    },
+    {
+      "nodeName": "BasePlate",
+      "displayName": "베이스 플레이트",
+      "fileName": "Base Plate.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0.5, 0]
+    },
+    {
+      "nodeName": "BaseGear",
+      "displayName": "베이스 기어",
+      "fileName": "Base Gear.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0, 0]
+    },
+    {
+      "nodeName": "GearLink1",
+      "displayName": "기어 링크 1",
+      "fileName": "Gear link 1.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [-0.5, -0.5, 0]
+    },
+    {
+      "nodeName": "GearLink2",
+      "displayName": "기어 링크 2",
+      "fileName": "Gear link 2.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0.5, -0.5, 0]
+    },
+    {
+      "nodeName": "Link",
+      "displayName": "링크",
+      "fileName": "Link.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
+    },
+    {
+      "nodeName": "Gripper",
+      "displayName": "그리퍼",
+      "fileName": "Gripper.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1.5, 0]
+    },
+    {
+      "nodeName": "Pin",
+      "displayName": "핀",
+      "fileName": "Pin.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0, 1]
+    }
+  ]
+}

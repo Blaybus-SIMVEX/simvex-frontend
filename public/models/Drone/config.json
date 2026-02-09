@@ -1,445 +1,88 @@
 {
-  "modelFile": "drone.glb",
+  "productName": "드론",
+  "modelFolder": "Drone",
+  "scale": 1,
   "parts": [
     {
-      "nodeName": "Solid1",
-      "displayName": "Solid1",
-      "originalPosition": [
-        -0.08431440591812134,
-        -0.013932269997894764,
-        -0.1742466539144516
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "MainFrame",
+      "displayName": "메인 프레임",
+      "fileName": "Main frame.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
     },
     {
-      "nodeName": "Solid1.001",
-      "displayName": "Solid1.001",
-      "originalPosition": [
-        0,
-        0,
-        -0.16415855288505554
-      ],
-      "originalRotation": [
-        -0.5,
-        0.5,
-        -0.5000001192092896,
-        0.5000000596046448
-      ],
-      "originalScale": [
-        0.010000000707805157,
-        0.010000000707805157,
-        0.010000000707805157
-      ]
+      "nodeName": "MainFrameMIR",
+      "displayName": "메인 프레임 (미러)",
+      "fileName": "Main frame_MIR.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 1, 0]
     },
     {
-      "nodeName": "Solid1.002",
-      "displayName": "Solid1.002",
-      "originalPosition": [
-        -0.07575442641973495,
-        -0.020860889926552773,
-        -0.164885014295578
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "ArmGear",
+      "displayName": "암 기어",
+      "fileName": "Arm gear.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 2, 0]
     },
     {
-      "nodeName": "Solid1.004",
-      "displayName": "Solid1.004",
-      "originalPosition": [
-        -0.08472780138254166,
-        0,
-        -0.17480172216892242
-      ],
-      "originalRotation": [
-        0,
-        0.3552360534667969,
-        0,
-        0.9347766041755676
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "Leg",
+      "displayName": "다리",
+      "fileName": "Leg.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 3, 0]
     },
     {
-      "nodeName": "Solid1.005",
-      "displayName": "Solid1.005",
-      "originalPosition": [
-        0,
-        0,
-        0
-      ],
-      "originalRotation": [
-        -0.70710688829422,
-        0,
-        0,
-        0.7071066498756409
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.010000000707805157,
-        0.010000000707805157
-      ]
+      "nodeName": "Gearing",
+      "displayName": "기어링",
+      "fileName": "Gearing.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 4, 0]
     },
     {
-      "nodeName": "Solid1.006",
-      "displayName": "Solid1.006",
-      "originalPosition": [
-        0,
-        0,
-        0
-      ],
-      "originalRotation": [
-        -0.70710688829422,
-        0,
-        0,
-        0.7071066498756409
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.010000000707805157,
-        0.010000000707805157
-      ]
+      "nodeName": "ImpellarBlade",
+      "displayName": "임펠러 블레이드",
+      "fileName": "Impellar Blade.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 5, 0]
     },
     {
-      "nodeName": "Solid1.007",
-      "displayName": "Solid1.007",
-      "originalPosition": [
-        0,
-        0,
-        0
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "BeaterDisc",
+      "displayName": "비터 디스크",
+      "fileName": "Beater disc.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 6, 0]
     },
     {
-      "nodeName": "Solid1.008",
-      "displayName": "Screw",
-      "originalPosition": [
-        0,
-        0,
-        0
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "Nut",
+      "displayName": "너트",
+      "fileName": "Nut.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 7, 0]
     },
     {
-      "nodeName": "Solid1.009",
-      "displayName": "xyz",
-      "originalPosition": [
-        0,
-        0,
-        0
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.013",
-      "displayName": "Solid1.013",
-      "originalPosition": [
-        -0.08395782113075256,
-        0.009837313555181026,
-        -0.17421238124370575
-      ],
-      "originalRotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.003",
-      "displayName": "Solid1.003",
-      "originalPosition": [
-        0.08350881934165955,
-        0.009837312623858452,
-        -0.17409126460552216
-      ],
-      "originalRotation": [
-        0,
-        -0.6883546113967896,
-        0,
-        0.7253743410110474
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.011",
-      "displayName": "Solid1.011",
-      "originalPosition": [
-        0.08398526906967163,
-        0,
-        -0.17493577301502228
-      ],
-      "originalRotation": [
-        0,
-        -0.3451686203479767,
-        0,
-        0.9385406970977783
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.014",
-      "displayName": "Solid1.014",
-      "originalPosition": [
-        0.07541391998529434,
-        -0.020860889926552773,
-        -0.16466958820819855
-      ],
-      "originalRotation": [
-        0,
-        -0.6560590267181396,
-        0,
-        0.7547095417976379
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.015",
-      "displayName": "Solid1.015",
-      "originalPosition": [
-        0.08349313586950302,
-        -0.013932269997894764,
-        -0.1744491457939148
-      ],
-      "originalRotation": [
-        0,
-        -0.6560590267181396,
-        0,
-        0.7547095417976379
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.016",
-      "displayName": "Solid1.016",
-      "originalPosition": [
-        -0.09571836143732071,
-        0.009837312623858452,
-        0.016916505992412567
-      ],
-      "originalRotation": [
-        0,
-        0.7071068286895752,
-        0,
-        0.7071068286895752
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.017",
-      "displayName": "Solid1.017",
-      "originalPosition": [
-        -0.0964869037270546,
-        0,
-        0.01750771701335907
-      ],
-      "originalRotation": [
-        0,
-        0.8508836030960083,
-        0,
-        0.525354266166687
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.018",
-      "displayName": "Solid1.018",
-      "originalPosition": [
-        -0.08458562195301056,
-        -0.020860889926552773,
-        0.011406734585762024
-      ],
-      "originalRotation": [
-        0,
-        0.6087613701820374,
-        0,
-        0.7933534979820251
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.019",
-      "displayName": "Solid1.019",
-      "originalPosition": [
-        -0.09584375470876694,
-        -0.013932269997894764,
-        0.01725206896662712
-      ],
-      "originalRotation": [
-        0,
-        0.6087613701820374,
-        0,
-        0.7933534979820251
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.010",
-      "displayName": "Solid1.010",
-      "originalPosition": [
-        0.09677180647850037,
-        -0.013932269997894764,
-        0.014742421917617321
-      ],
-      "originalRotation": [
-        0,
-        -0.976296067237854,
-        0,
-        0.21643954515457153
-      ],
-      "originalScale": [
-        0.010000001639127731,
-        0.009999999776482582,
-        0.010000001639127731
-      ]
-    },
-    {
-      "nodeName": "Solid1.012",
-      "displayName": "Solid1.012",
-      "originalPosition": [
-        0.08505742996931076,
-        -0.020860889926552773,
-        0.00987550150603056
-      ],
-      "originalRotation": [
-        0,
-        -0.976296067237854,
-        0,
-        0.21643954515457153
-      ],
-      "originalScale": [
-        0.010000001639127731,
-        0.009999999776482582,
-        0.010000001639127731
-      ]
-    },
-    {
-      "nodeName": "Solid1.020",
-      "displayName": "Solid1.020",
-      "originalPosition": [
-        0.09738104790449142,
-        0,
-        0.015070776455104351
-      ],
-      "originalRotation": [
-        0,
-        -0.8357316255569458,
-        0,
-        0.5491381287574768
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
-    },
-    {
-      "nodeName": "Solid1.021",
-      "displayName": "Solid1.021",
-      "originalPosition": [
-        0.09643414616584778,
-        0.009837312623858452,
-        0.014862061478197575
-      ],
-      "originalRotation": [
-        0,
-        1,
-        0,
-        2.9802322387695312e-8
-      ],
-      "originalScale": [
-        0.009999999776482582,
-        0.009999999776482582,
-        0.009999999776482582
-      ]
+      "nodeName": "Screw",
+      "displayName": "나사",
+      "fileName": "Screw.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 8, 0]
     }
   ]
 }

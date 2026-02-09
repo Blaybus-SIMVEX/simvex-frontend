@@ -205,6 +205,7 @@ interface PartRendererProps {
 const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(
   ({ part, selected, onClick }, ref) => {
     const { scene } = useGLTF(part.modelUrl) as unknown as GLTFResult;
+    const initializedRef = useRef(false);
 
     const clone = useMemo(() => {
       const c = scene.clone();
@@ -228,12 +229,28 @@ const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(
       });
     }, [clone, selected]);
 
-    // Apply Initial Transforms from config
+    // Apply Initial Transforms - only override if config has non-zero values
     useEffect(() => {
-      if (ref && typeof ref !== 'function' && ref.current) {
-        ref.current.position.set(...part.originalPosition);
-        ref.current.quaternion.set(...part.originalRotation);
-        ref.current.scale.set(...part.originalScale);
+      if (ref && typeof ref !== 'function' && ref.current && !initializedRef.current) {
+        initializedRef.current = true;
+
+        // Check if originalPosition is non-zero (explicitly set in config)
+        const hasCustomPosition = part.originalPosition.some(v => v !== 0);
+        const hasCustomRotation = part.originalRotation.some((v, i) =>
+          i === 3 ? v !== 1 : v !== 0
+        ); // quaternion default is [0,0,0,1]
+        const hasCustomScale = part.originalScale.some(v => v !== 1);
+
+        // Only apply config transforms if they're explicitly set (non-default)
+        if (hasCustomPosition) {
+          ref.current.position.set(...part.originalPosition);
+        }
+        if (hasCustomRotation) {
+          ref.current.quaternion.set(...part.originalRotation);
+        }
+        if (hasCustomScale) {
+          ref.current.scale.set(...part.originalScale);
+        }
       }
     }, [part, ref]);
 

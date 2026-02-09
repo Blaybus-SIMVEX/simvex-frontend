@@ -1,0 +1,70 @@
+{
+  "productName": "V4 실린더 엔진",
+  "modelFolder": "V4_Engine",
+  "scale": 1,
+  "parts": [
+    {
+      "nodeName": "Crankshaft",
+      "displayName": "크랭크샤프트",
+      "fileName": "Crankshaft.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
+    },
+    {
+      "nodeName": "ConnectingRodCap",
+      "displayName": "커넥팅 로드 캡",
+      "fileName": "Connecting Rod Cap.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -0.5, -1]
+    },
+    {
+      "nodeName": "ConrodBolt",
+      "displayName": "커넥팅 로드 볼트",
+      "fileName": "Conrod Bolt.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0, -1.5]
+    },
+    {
+      "nodeName": "ConnectingRod",
+      "displayName": "커넥팅 로드",
+      "fileName": "Connecting Rod.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0.5, 0]
+    },
+    {
+      "nodeName": "PistonPin",
+      "displayName": "피스톤 핀",
+      "fileName": "Piston Pin.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1, 1, 0]
+    },
+    {
+      "nodeName": "PistonRing",
+      "displayName": "피스톤 링",
+      "fileName": "Piston Ring.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 1.5, 0]
+    },
+    {
+      "nodeName": "Piston",
+      "displayName": "피스톤",
+      "fileName": "Piston.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 2, 0]
+    }
+  ]
+}

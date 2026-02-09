@@ -1,0 +1,88 @@
+{
+  "productName": "판스프링",
+  "modelFolder": "Leaf Spring",
+  "scale": 1,
+  "parts": [
+    {
+      "nodeName": "Leaf-Layer",
+      "displayName": "리프 스프링",
+      "fileName": "Leaf-Layer.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0, 0]
+    },
+    {
+      "nodeName": "Clamp-Center",
+      "displayName": "센터 클램프",
+      "fileName": "Clamp-Center.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 1, 0]
+    },
+    {
+      "nodeName": "Clamp-Primary",
+      "displayName": "프라이머리 클램프",
+      "fileName": "Clamp-Primary.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1, 0, 0]
+    },
+    {
+      "nodeName": "Clamp-Secondary",
+      "displayName": "세컨더리 클램프",
+      "fileName": "Clamp-Secondary.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [-1, 0, 0]
+    },
+    {
+      "nodeName": "Support",
+      "displayName": "서포트",
+      "fileName": "Support.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
+    },
+    {
+      "nodeName": "Support-Chassis",
+      "displayName": "샤시 서포트",
+      "fileName": "Support-Chassis.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1.5, 1, 0]
+    },
+    {
+      "nodeName": "Support-ChassisRigid",
+      "displayName": "샤시 서포트 (리지드)",
+      "fileName": "Support-Chassis Rigid.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [-1.5, 1, 0]
+    },
+    {
+      "nodeName": "Support-Rubber",
+      "displayName": "러버 서포트",
+      "fileName": "Support-Rubber.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1.5, -1, 0]
+    },
+    {
+      "nodeName": "Support-Rubber60mm",
+      "displayName": "러버 서포트 60mm",
+      "fileName": "Support-Rubber 60mm.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [-1.5, -1, 0]
+    }
+  ]
+}

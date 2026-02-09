@@ -1,0 +1,52 @@
+{
+  "productName": "서스펜션",
+  "modelFolder": "Suspension",
+  "scale": 1,
+  "parts": [
+    {
+      "nodeName": "BASE",
+      "displayName": "베이스",
+      "fileName": "BASE.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
+    },
+    {
+      "nodeName": "SPRING",
+      "displayName": "스프링",
+      "fileName": "SPRING.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1, 0, 0]
+    },
+    {
+      "nodeName": "ROD",
+      "displayName": "로드",
+      "fileName": "ROD.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 1, 0]
+    },
+    {
+      "nodeName": "NUT",
+      "displayName": "너트",
+      "fileName": "NUT.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 2, 0]
+    },
+    {
+      "nodeName": "NIT",
+      "displayName": "니트",
+      "fileName": "NIT.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 3, 0]
+    }
+  ]
+}

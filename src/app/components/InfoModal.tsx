@@ -122,39 +122,6 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
               <h3 className="font-bold text-[16px] text-[#222222]">이론</h3>
               <p className="text-[14px] text-[#444444] leading-[1.6]">{objectDetail?.theory || ''}</p>
             </div>
-
-            {/* 부품 목록 섹션 */}
-            {/* <div className="space-y-2 mt-4">
-              <h3 className="font-bold text-[16px] text-[#222222]">구성 부품</h3>
-              <div className="space-y-2">
-                {objectDetail?.components?.map((component) => (
-                  <button
-                    key={component.id}
-                    onClick={handleComponentClick}
-                    className="w-full text-left p-3 bg-[#F8F9FA] rounded-lg hover:bg-[#EBF1FF] transition-colors border border-transparent hover:border-[#4880FF]/30"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-[14px] font-medium text-[#333333]">{component.name}</p>
-                        <p className="text-[12px] text-[#666666]">{component.nameEn}</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#999"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M9 18l6-6-6-6" />
-                      </svg>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div> */}
           </>
         ) : (
           <>

@@ -7,13 +7,13 @@ import { useEffect, useState } from 'react';
 
 // nameEn을 modelType으로 매핑
 const NAME_TO_MODEL_TYPE: Record<string, string> = {
-  'v4-engine': 'engine',
-  'suspension': 'suspension',
-  'machine-vice': 'machine-vice',
-  'robot-arm': 'robot-arm',
-  'robot-gripper': 'robot-gripper',
-  'leaf-spring': 'leaf-spring',
-  'drone': 'drone',
+  'V4 Engine': 'engine',
+  'Coil Suspension': 'suspension',
+  'Machine Vice': 'machine-vice',
+  'Robot Arm': 'robot-arm',
+  'Robot Gripper': 'robot-gripper',
+  'Leaf Spring': 'leaf-spring',
+  'Quadcopter Drone': 'drone',
 };
 
 interface StudyViewerContainerProps {
@@ -28,13 +28,14 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
 
   useEffect(() => {
     if (objectId) {
+      console.log(objectId)
       fetchObjectDetail(objectId);
     }
   }, [objectId, fetchObjectDetail]);
 
   // nameEn에서 modelType 추출
   const modelType = objectDetail?.nameEn
-    ? NAME_TO_MODEL_TYPE[objectDetail.nameEn.toLowerCase()] || 'robot-arm'
+    ? NAME_TO_MODEL_TYPE[objectDetail.nameEn] || 'robot-arm'
     : 'robot-arm';
 
   return (

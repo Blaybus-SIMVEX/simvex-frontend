@@ -24,14 +24,8 @@ export default function ViewerControls({
   onZoomIn,
   onZoomOut,
 }: ViewerControlsProps) {
-  // Figma styles
-  // Frame 65:1693 'step-slider'
-  // Background: #ECECEC, width 16px, rounded-full
-  // Ticks: #FAFAFA, width 4px, height 2px
-  // Handle: #171717, width 20px, height 31px, rounded-full
-
   // Determine tick count based on Figma design which shows about 10 intervals
-  const totalSteps = 10;
+  const totalSteps = 5;
 
   return (
     <div className="absolute left-6 top-6 bottom-6 flex flex-col justify-between items-center pointer-events-none z-10 w-12">

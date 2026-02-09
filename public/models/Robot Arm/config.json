@@ -1,0 +1,79 @@
+{
+  "productName": "로봇 암",
+  "modelFolder": "Robot Arm",
+  "scale": 1,
+  "parts": [
+    {
+      "nodeName": "base",
+      "displayName": "베이스",
+      "fileName": "base.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, -1, 0]
+    },
+    {
+      "nodeName": "Part2",
+      "displayName": "회전대 연결부",
+      "fileName": "Part2.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0, 0.5, 0]
+    },
+    {
+      "nodeName": "Part3",
+      "displayName": "제1관절 암",
+      "fileName": "Part3.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [0.5, 1, 0]
+    },
+    {
+      "nodeName": "Part4",
+      "displayName": "제2관절 연결부",
+      "fileName": "Part4.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1, 1.5, 0]
+    },
+    {
+      "nodeName": "Part5",
+      "displayName": "제3관절 암",
+      "fileName": "Part5.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [1.5, 2, 0]
+    },
+    {
+      "nodeName": "Part6",
+      "displayName": "제4관절 연결부",
+      "fileName": "Part6.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [2, 2.5, 0]
+    },
+    {
+      "nodeName": "Part7",
+      "displayName": "제5관절 암",
+      "fileName": "Part7.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [2.5, 3, 0]
+    },
+    {
+      "nodeName": "Part8",
+      "displayName": "엔드 이펙터 연결부",
+      "fileName": "Part8.glb",
+      "originalPosition": [0, 0, 0],
+      "originalRotation": [0, 0, 0, 1],
+      "originalScale": [1, 1, 1],
+      "explosionDirection": [3, 3.5, 0]
+    }
+  ]
+}
