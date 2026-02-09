@@ -1,29 +1,24 @@
 'use client';
 
-import { useAIChat } from '@/features/3d-viewer/api/use3DViewer';
+import { useChatStream } from '@/features/ai-chat/hooks/useChatStream';
 import { useEffect, useRef, useState } from 'react';
-
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-}
+import ReactMarkdown from 'react-markdown';
 
 interface AIAssistantProps {
   objectId: number;
 }
 
 export default function AIAssistant({ objectId }: AIAssistantProps) {
-  const { sendMessage, isLoading } = useAIChat();
-  const [messages, setMessages] = useState<Message[]>([
+  const [input, setInput] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const { messages, sendMessage, isLoading } = useChatStream([
     {
       id: 'welcome',
       role: 'assistant',
       content: '궁금한 점이 있다면\n언제든지 물어보세요!',
     },
   ]);
-  const [input, setInput] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -33,50 +28,12 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async (e?: React.FormEvent) => {
+  const handleSend = async (e?: React.SubmitEvent) => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      role: 'user',
-      content: input,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
-
-    try {
-      const response = await sendMessage({
-        object3DId: objectId,
-        question: input,
-        conversationHistory: messages.map((m) => ({
-          role: m.role,
-          content: m.content,
-        })),
-      });
-
-      if (response) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: (Date.now() + 1).toString(),
-            role: 'assistant',
-            content: response.answer,
-          },
-        ]);
-      }
-    } catch (e) {
-      console.error('Failed to send message', e);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          role: 'assistant',
-          content: '죄송합니다. 오류가 발생했습니다.',
-        },
-      ]);
-    }
+    await sendMessage(currentInput, objectId);
   };
 
   return (
@@ -91,13 +48,34 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
         {messages.map((message) => (
           <div key={message.id} className={`flex w-full ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[85%] px-4 py-3 text-[14px] leading-relaxed whitespace-pre-wrap ${
+              className={`max-w-[85%] px-4 py-3 text-[14px] leading-relaxed ${
                 message.role === 'user'
-                  ? 'bg-[#EAEAEA] text-[#333333] rounded-[18px] rounded-tr-[4px]'
+                  ? 'bg-[#EAEAEA] text-[#333333] rounded-[18px] rounded-tr-[4px] whitespace-pre-wrap'
                   : 'bg-white text-[#333333] border border-[#E5E5E5] rounded-[18px] rounded-tl-[4px] shadow-sm'
               }`}
             >
-              {message.content}
+              {/* ▼▼▼ 여기서부터 수정된 부분입니다 ▼▼▼ */}
+              {message.role === 'user' ? (
+                message.content
+              ) : (
+                <ReactMarkdown
+                  // Markdown 내부 스타일 정의 (리스트, 문단 간격 등)
+                  components={{
+                    // ul(점 리스트) 스타일: 왼쪽 여백(pl-5), 점 스타일(list-disc)
+                    ul: ({ ...props }) => <ul className="list-disc pl-5 space-y-1 my-2" {...props} />,
+                    // ol(숫자 리스트) 스타일
+                    ol: ({ ...props }) => <ol className="list-decimal pl-5 space-y-1 my-2" {...props} />,
+                    // li(리스트 아이템) 스타일
+                    li: ({ ...props }) => <li className="pl-1" {...props} />,
+                    // p(문단) 스타일: 문단 사이에 간격 추가
+                    p: ({ ...props }) => <p className="mb-2 last:mb-0 whitespace-pre-wrap" {...props} />,
+                    // strong(굵게) 스타일
+                    strong: ({ ...props }) => <span className="font-bold text-inherit" {...props} />,
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
+              )}
             </div>
           </div>
         ))}

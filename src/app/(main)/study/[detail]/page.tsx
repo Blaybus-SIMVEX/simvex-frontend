@@ -1,5 +1,5 @@
-import AIAssistant from '@/app/components/AIAssistant';
 import MemoPad from '@/app/components/MemoPad';
+import AIAssistant from '@/features/ai-chat/components/AIAssistant';
 import StudyHeader from '@/features/study/components/StudyHeader';
 import StudyViewerContainer from '@/features/study/components/StudyViewerContainer';
 

@@ -42,20 +42,6 @@ export interface IMemoList {
   size: number;
 }
 
-export interface IChatRequest {
-  object3DId: number;
-  question: string;
-  conversationHistory?: {
-    role: string;
-    content: string;
-  }[];
-}
-
-export interface IChatResponse {
-  answer: string;
-  role: string;
-}
-
 export interface IApiResponse<T> {
   message: string;
   data: T;

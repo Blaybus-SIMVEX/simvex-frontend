@@ -1,13 +1,4 @@
-import {
-  IApiResponse,
-  IChatRequest,
-  IChatResponse,
-  IComponent,
-  IComponentList,
-  IMemo,
-  IMemoList,
-  IObjectDetail,
-} from '../types';
+import { IApiResponse, IComponent, IComponentList, IMemo, IMemoList, IObjectDetail } from '../types';
 import { useApi } from '@/lib/useApi';
 import { useCallback } from 'react';
 
@@ -88,17 +79,4 @@ export const useMemoActions = () => {
   );
 
   return { createMemo, updateMemo, deleteMemo, isLoading, error };
-};
-
-export const useAIChat = () => {
-  const { data, isLoading, error, POST } = useApi<IChatResponse>();
-
-  const sendMessage = useCallback(
-    async (body: IChatRequest) => {
-      return POST(`/api/ai/chat`, body);
-    },
-    [POST],
-  );
-
-  return { response: data, isLoading, error, sendMessage };
 };
