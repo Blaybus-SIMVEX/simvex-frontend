@@ -75,8 +75,8 @@ export default function ViewerControls({
           {/* Custom Thumb handle */}
           <div
             className="absolute w-[20px] h-[31px] bg-[#171717] border-[2px] border-[#171717] rounded-full shadow-md z-10 pointer-events-none transition-all"
-            style={{ 
-              bottom: `calc((100% - 31px) * ${(totalSteps - assemblyStep) / totalSteps})` 
+            style={{
+              bottom: `calc((100% - 31px) * ${(totalSteps - assemblyStep) / totalSteps})`,
             }}
           />
 

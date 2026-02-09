@@ -2,21 +2,21 @@
 
 import { useObjectDetail } from '@/features/3d-viewer/api/use3DViewer';
 import { IComponent } from '@/features/3d-viewer/types';
-import { useEffect, useState } from 'react';
-
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 const ComponentPreview = dynamic(() => import('@/features/3d-viewer/components/ComponentPreview'), {
   ssr: false,
-  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-[4px]" />
+  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-[4px]" />,
 });
 
 interface InfoModalProps {
   objectId: number;
   onClose?: () => void;
+  selectedPartName?: string | null;
 }
 
-export default function InfoModal({ objectId, onClose }: InfoModalProps) {
+export default function InfoModal({ objectId, onClose, selectedPartName }: InfoModalProps) {
   const [activeTab, setActiveTab] = useState<'product' | 'detail'>('product');
 
   const { objectDetail, isLoading, error, fetchObjectDetail } = useObjectDetail();
@@ -27,6 +27,16 @@ export default function InfoModal({ objectId, onClose }: InfoModalProps) {
       fetchObjectDetail(objectId);
     }
   }, [objectId, fetchObjectDetail]);
+
+  // 부품 선택 시 detail 탭으로 전환
+  // 부품 선택 시 detail 탭으로 전환 (Render Loop 내에서 상태 조정)
+  const [prevSelectedPartName, setPrevSelectedPartName] = useState(selectedPartName);
+  if (selectedPartName !== prevSelectedPartName) {
+    setPrevSelectedPartName(selectedPartName);
+    if (selectedPartName) {
+      setActiveTab('detail');
+    }
+  }
 
   // 완제품 탭 클릭
   const handleProductTabClick = () => {
@@ -57,9 +67,7 @@ export default function InfoModal({ objectId, onClose }: InfoModalProps) {
           <h2 className="font-bold text-[18px] text-[#111111] leading-tight flex items-center gap-1">
             {objectDetail?.name || ''} ({objectDetail?.nameEn || ''})
           </h2>
-          <p className="text-[#666666] text-[13px] font-normal leading-relaxed">
-            {objectDetail?.description || ''}
-          </p>
+          <p className="text-[#666666] text-[13px] font-normal leading-relaxed">{objectDetail?.description || ''}</p>
         </div>
         <button
           onClick={onClose}
@@ -163,11 +171,11 @@ export default function InfoModal({ objectId, onClose }: InfoModalProps) {
                     >
                       {component?.modelFileUrl ? (
                         <div className="w-full h-full">
-                           <ComponentPreview modelUrl={component.modelFileUrl} />
+                          <ComponentPreview modelUrl={component.modelFileUrl} />
                         </div>
                       ) : (
                         <div className="flex items-center justify-center w-full h-full">
-                           <div className="w-8 h-8 rounded-full bg-gray-200" />
+                          <div className="w-8 h-8 rounded-full bg-gray-200" />
                         </div>
                       )}
                     </div>
@@ -182,13 +190,11 @@ export default function InfoModal({ objectId, onClose }: InfoModalProps) {
                     <h3 className="font-semibold text-[14px] text-[#171717] mb-[2px]">
                       {component.name} ({component.nameEn})
                     </h3>
-                    <p className="font-medium text-[12px] text-[#767676] leading-[140%] break-keep">
-                      {component.role}
-                    </p>
+                    <p className="font-medium text-[12px] text-[#767676] leading-[140%] break-keep">{component.role}</p>
                   </div>
                 ))}
               </div>
-              
+
               {!objectDetail?.components?.length && (
                 <div className="flex items-center justify-center h-32 text-[#666666] text-[13px]">
                   부품 정보가 없습니다.

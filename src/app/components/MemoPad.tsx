@@ -155,9 +155,7 @@ export default function MemoPad({ objectId }: MemoPadProps) {
           {/* Empty State */}
           {!isLoading && memos.length === 0 && !isAdding && (
             <div className="w-full h-[200px] bg-white rounded-[8px] flex flex-col items-center justify-center text-center">
-              <p className="text-[#555555] text-[12px]">
-                학습중인 내용을 메모로 남겨보세요.
-              </p>
+              <p className="text-[#555555] text-[12px]">학습중인 내용을 메모로 남겨보세요.</p>
             </div>
           )}
 

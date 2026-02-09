@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const blob = await response.blob();
     const headers = new Headers();
     headers.set('Content-Type', response.headers.get('Content-Type') || 'model/gltf-binary');
-    
+
     // Cache control for performance (optional but recommended for static assets)
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
 

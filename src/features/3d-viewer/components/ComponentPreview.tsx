@@ -1,8 +1,7 @@
 'use client';
 
+import { OrbitControls, Stage, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useGLTF, Stage, OrbitControls } from '@react-three/drei';
-
 import { Component, ReactNode, Suspense } from 'react';
 
 interface ComponentPreviewProps {
