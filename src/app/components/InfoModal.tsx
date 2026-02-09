@@ -129,7 +129,6 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
       <div className="flex-1 flex flex-col overflow-hidden">
         {activeTab === 'product' ? (
           <div className="space-y-2 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent pr-2">
-            {/* 이론 섹션 */}
             <h3 className="font-bold text-[16px] text-[#222222]">이론</h3>
             <p className="text-[14px] text-[#444444] leading-[1.6]">{objectDetail?.theory || ''}</p>
           </div>
@@ -137,18 +136,17 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
           <div className="flex flex-col gap-6 px-1 flex-1 overflow-hidden">
             {/* Image Grid - 고정 영역 */}
             <div className="grid grid-cols-4 gap-2 flex-shrink-0">
-              {[...Array(8)].map((_, i) => {
-                const component = objectDetail?.components?.[i];
-                const isSelected = component && selectedComponentIds.has(component.id);
+              {objectDetail?.components?.map((component: IComponent) => {
+                const isSelected = selectedComponentIds.has(component.id);
                 return (
                   <div
-                    key={i}
-                    onClick={() => component && handleComponentClick(component.id)}
+                    key={component.id}
+                    onClick={() => handleComponentClick(component.id)}
                     className={`aspect-square bg-[#F5F5F5] rounded-[4px] overflow-hidden flex items-center justify-center relative cursor-pointer transition-all ${
                       isSelected ? 'border border-[#2C74FF]' : 'border border-gray-100 hover:border-gray-300'
                     }`}
                   >
-                    {component?.modelFileUrl ? (
+                    {component.modelFileUrl ? (
                       <div className="w-full h-full">
                         <ComponentPreview modelUrl={component.modelFileUrl} />
                       </div>
