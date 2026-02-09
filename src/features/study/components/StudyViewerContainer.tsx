@@ -49,8 +49,8 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
             | 'suspension'
         }
         selectedPart={null}
-        onSelectPart={(partName) => {
-          setSelectedPartName(partName);
+        onSelectPart={(partName, displayName) => {
+          setSelectedPartName(displayName);
           if (partName) setIsInfoPanelOpen(true);
         }}
       />

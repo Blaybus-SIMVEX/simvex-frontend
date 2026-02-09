@@ -1,5 +1,6 @@
 'use client';
 
+import XMarker from '@/assets/icons/x-mark.svg';
 import { useObjectDetail } from '@/features/3d-viewer/api/use3DViewer';
 import { IComponent } from '@/features/3d-viewer/types';
 import dynamic from 'next/dynamic';
@@ -7,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 const ComponentPreview = dynamic(() => import('@/features/3d-viewer/components/ComponentPreview'), {
   ssr: false,
-  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-[4px]" />,
+  loading: () => <div className="w-full h-full bg-gray-100 rounded-[4px]" />,
 });
 
 interface InfoModalProps {
@@ -41,14 +42,19 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
     }
   }, [objectId, fetchObjectDetail]);
 
-  // 부품 선택 시 detail 탭으로 전환
-  const [prevSelectedPartName, setPrevSelectedPartName] = useState(selectedPartName);
-  if (selectedPartName !== prevSelectedPartName) {
-    setPrevSelectedPartName(selectedPartName);
-    if (selectedPartName) {
+  // 부품 선택 시 detail 탭으로 전환 및 해당 부품 선택 (로딩 완료 후)
+  useEffect(() => {
+    if (!isLoading && selectedPartName && objectDetail?.components) {
       setActiveTab('detail');
+      // 선택된 부품 이름으로 컴포넌트 찾아서 선택
+      const selectedComponent = objectDetail.components.find(
+        (component: IComponent) => component.name === selectedPartName || component.nameEn === selectedPartName,
+      );
+      if (selectedComponent) {
+        setSelectedComponentIds(new Set([selectedComponent.id]));
+      }
     }
-  }
+  }, [isLoading, selectedPartName, objectDetail?.components]);
 
   // 완제품 탭 클릭
   const handleProductTabClick = () => {
@@ -85,19 +91,7 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
           onClick={onClose}
           className="text-[#999999] hover:text-[#333333] transition-colors p-1 rounded-full hover:bg-gray-100"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+          <XMarker strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </button>
       </div>
 
