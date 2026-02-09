@@ -1,7 +1,7 @@
 'use client';
 
 import { IComponent } from '@/features/3d-viewer/types';
-import { TransformControls, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -36,11 +36,8 @@ interface DynamicAssemblyProps {
 
 export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicAssemblyProps) {
   const [selectedNodeName, setSelectedNodeName] = useState<string | null>(null);
-  const [selectedObject, setSelectedObject] = useState<THREE.Object3D | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const partsRef = useRef<Record<string, THREE.Group>>({});
-
-  console.log('[DynamicAssembly] Rendering with config:', config.productName);
 
   // State for persisted transforms (Developer Mode)
   const [savedTransforms, setSavedTransforms] = useState<Record<string, Partial<PartConfig>>>({});
@@ -117,55 +114,16 @@ export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicA
 
     if (nodeName === selectedNodeName) {
       setSelectedNodeName(null);
-      setSelectedObject(null);
       onSelectPart?.(null, null);
     } else {
       setSelectedNodeName(nodeName);
-      setSelectedObject(partsRef.current[nodeName]);
       onSelectPart?.(nodeName, displayName);
     }
   };
 
   const handleBackgroundClick = () => {
     setSelectedNodeName(null);
-    setSelectedObject(null);
     onSelectPart?.(null, null);
-  };
-
-  const handleTransformChange = () => {
-    const nodeName = selectedNodeName;
-    if (!nodeName || !partsRef.current[nodeName]) return;
-
-    const o = partsRef.current[nodeName];
-
-    // Log to console for developer mode
-    console.log(`Part: ${nodeName} Transformed`);
-    console.log(`"originalPosition": [${o.position.x}, ${o.position.y}, ${o.position.z}],`);
-    console.log(`"originalRotation": [${o.quaternion.x}, ${o.quaternion.y}, ${o.quaternion.z}, ${o.quaternion.w}],`);
-    console.log(`"originalScale": [${o.scale.x}, ${o.scale.y}, ${o.scale.z}]`);
-  };
-
-  const handleTransformEnd = () => {
-    const nodeName = selectedNodeName;
-    if (!nodeName || !partsRef.current[nodeName]) return;
-
-    const o = partsRef.current[nodeName];
-    const newTransform = {
-      originalPosition: [o.position.x, o.position.y, o.position.z] as [number, number, number],
-      originalRotation: [o.quaternion.x, o.quaternion.y, o.quaternion.z, o.quaternion.w] as [
-        number,
-        number,
-        number,
-        number,
-      ],
-      originalScale: [o.scale.x, o.scale.y, o.scale.z] as [number, number, number],
-    };
-
-    // Update state and localStorage
-    const newTransforms = { ...savedTransforms, [nodeName]: newTransform };
-    setSavedTransforms(newTransforms);
-    localStorage.setItem(storageKey, JSON.stringify(newTransforms));
-    console.log('Saved transform to localStorage:', storageKey);
   };
 
   return (
@@ -181,14 +139,6 @@ export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicA
           }}
         />
       ))}
-      {selectedNodeName && selectedObject && (
-        <TransformControls
-          object={selectedObject}
-          mode="translate"
-          onObjectChange={handleTransformChange}
-          onMouseUp={handleTransformEnd}
-        />
-      )}
     </group>
   );
 }
