@@ -1,7 +1,7 @@
 {
   "productName": "판스프링",
   "modelFolder": "Leaf Spring",
-  "scale": 1,
+  "scale": 3,
   "parts": [
     {
       "nodeName": "Leaf-Layer",

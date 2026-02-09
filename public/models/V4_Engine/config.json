@@ -1,7 +1,7 @@
 {
   "productName": "V4 실린더 엔진",
   "modelFolder": "V4_Engine",
-  "scale": 1,
+  "scale": 8,
   "parts": [
     {
       "nodeName": "Crankshaft",

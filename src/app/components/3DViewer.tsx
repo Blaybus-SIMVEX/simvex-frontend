@@ -107,7 +107,7 @@ export default function ThreeDViewer({ onSelectPart, modelType }: ThreeDViewerPr
   return (
     <div className="relative w-full h-full bg-[#BCCCDC] overflow-hidden group">
       {/* 3D Canvas */}
-      <Canvas camera={{ position: [2.5, 2.5, 2.5], fov: 40 }} className="w-full h-full">
+      <Canvas camera={{ position: [3, 3, 3], fov: 45 }} className="w-full h-full">
         <Suspense fallback={null}>
           <Stage environment="city" intensity={0.6} adjustCamera={false} shadows={false}>
             {currentConfig ? (

@@ -1,7 +1,7 @@
 {
   "productName": "드론",
   "modelFolder": "Drone",
-  "scale": 1,
+  "scale": 5,
   "parts": [
     {
       "nodeName": "MainFrame",

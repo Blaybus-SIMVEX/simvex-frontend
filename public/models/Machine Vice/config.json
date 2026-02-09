@@ -1,7 +1,7 @@
 {
   "productName": "공작 기계 바이스",
   "modelFolder": "Machine Vice",
-  "scale": 1,
+  "scale": 10,
   "parts": [
     {
       "nodeName": "Part8-grundplatte",

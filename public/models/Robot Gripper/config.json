@@ -1,7 +1,7 @@
 {
   "productName": "로봇 그리퍼",
   "modelFolder": "Robot Gripper",
-  "scale": 1,
+  "scale": 15,
   "parts": [
     {
       "nodeName": "BaseMountingBracket",
