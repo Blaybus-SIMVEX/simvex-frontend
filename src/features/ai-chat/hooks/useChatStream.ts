@@ -3,8 +3,6 @@
 import { streamApiClient } from '@/lib/streamApiClient';
 import { useCallback, useState } from 'react';
 
-// 경로 확인 필요
-
 interface Message {
   id: string;
   role: 'user' | 'assistant';
