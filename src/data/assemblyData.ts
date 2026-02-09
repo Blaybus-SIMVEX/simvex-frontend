@@ -18,7 +18,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Main frame.glb',
     position: [-0.08431440591812134, -0.013932269997894764, -0.1742466539144516],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_1',
@@ -27,7 +27,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Arm gear.glb',
     position: [0, 0, -0.16415855288505554],
     rotation: [-1.571, -0.0, -1.571],
-    scale: [0.01, 0.01, 0.01]
+    scale: [0.01, 0.01, 0.01],
   },
   {
     id: 'part_2',
@@ -36,7 +36,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Leg.glb',
     position: [-0.07575442641973495, -0.020860889926552773, -0.164885014295578],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_3',
@@ -45,7 +45,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Impellar Blade.glb',
     position: [-0.08472780138254166, 0, -0.17480172216892242],
     rotation: [0.0, 0.726, 0.0],
-    scale: [0.01, 0.01, 0.01]
+    scale: [0.01, 0.01, 0.01],
   },
   {
     id: 'part_4',
@@ -54,7 +54,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Gearing.glb',
     position: [0, 0, 0],
     rotation: [-1.571, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.010000000707805157, 0.010000000707805157]
+    scale: [0.009999999776482582, 0.010000000707805157, 0.010000000707805157],
   },
   {
     id: 'part_5',
@@ -63,7 +63,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Gearing.glb',
     position: [0, 0, 0],
     rotation: [-1.571, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.010000000707805157, 0.010000000707805157]
+    scale: [0.009999999776482582, 0.010000000707805157, 0.010000000707805157],
   },
   {
     id: 'part_6',
@@ -72,7 +72,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Beater disc.glb',
     position: [0, 0, 0],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_7',
@@ -81,7 +81,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Screw.glb',
     position: [0, 0, 0],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_8',
@@ -90,7 +90,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/xyz.glb',
     position: [0, 0, 0],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_9',
@@ -99,7 +99,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Screw.glb',
     position: [-0.08395782113075256, 0.009837313555181026, -0.17421238124370575],
     rotation: [0.0, 0.0, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_10',
@@ -108,7 +108,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Impellar Blade.glb',
     position: [0.08350881934165955, 0.009837312623858452, -0.17409126460552216],
     rotation: [0.0, -1.518, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_11',
@@ -117,7 +117,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Impellar Blade.glb',
     position: [0.08398526906967163, 0, -0.17493577301502228],
     rotation: [0.0, -0.705, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_12',
@@ -126,7 +126,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Leg.glb',
     position: [0.07541391998529434, -0.020860889926552773, -0.16466958820819855],
     rotation: [0.0, -1.431, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_13',
@@ -135,7 +135,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Main frame_MIR.glb',
     position: [0.08349313586950302, -0.013932269997894764, -0.1744491457939148],
     rotation: [0.0, -1.431, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_14',
@@ -144,7 +144,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Screw.glb',
     position: [-0.09571836143732071, 0.009837312623858452, 0.016916505992412567],
     rotation: [3.142, 1.571, 3.142],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_15',
@@ -153,7 +153,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Impellar Blade.glb',
     position: [-0.0964869037270546, 0, 0.01750771701335907],
     rotation: [3.142, 1.106, 3.142],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_16',
@@ -162,7 +162,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Leg.glb',
     position: [-0.08458562195301056, -0.020860889926552773, 0.011406734585762024],
     rotation: [0.0, 1.309, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_17',
@@ -171,7 +171,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Main frame.glb',
     position: [-0.09584375470876694, -0.013932269997894764, 0.01725206896662712],
     rotation: [0.0, 1.309, 0.0],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_18',
@@ -180,7 +180,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Main frame_MIR.glb',
     position: [0.09677180647850037, -0.013932269997894764, 0.014742421917617321],
     rotation: [3.142, -0.436, 3.142],
-    scale: [0.010000001639127731, 0.009999999776482582, 0.010000001639127731]
+    scale: [0.010000001639127731, 0.009999999776482582, 0.010000001639127731],
   },
   {
     id: 'part_19',
@@ -189,7 +189,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Leg.glb',
     position: [0.08505742996931076, -0.020860889926552773, 0.00987550150603056],
     rotation: [3.142, -0.436, 3.142],
-    scale: [0.010000001639127731, 0.009999999776482582, 0.010000001639127731]
+    scale: [0.010000001639127731, 0.009999999776482582, 0.010000001639127731],
   },
   {
     id: 'part_20',
@@ -198,7 +198,7 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Impellar Blade.glb',
     position: [0.09738104790449142, 0, 0.015070776455104351],
     rotation: [3.142, -1.163, 3.142],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
   {
     id: 'part_21',
@@ -207,6 +207,6 @@ export const DRONE_ASSEMBLY_STEPS: DronePartData[] = [
     modelPath: '/models/Drone/Screw.glb',
     position: [0.09643414616584778, 0.009837312623858452, 0.014862061478197575],
     rotation: [3.142, 0.0, 3.142],
-    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582]
+    scale: [0.009999999776482582, 0.009999999776482582, 0.009999999776482582],
   },
 ];

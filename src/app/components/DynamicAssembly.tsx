@@ -1,7 +1,7 @@
 'use client';
 
 import { IComponent } from '@/features/3d-viewer/types';
-import { useGLTF, TransformControls } from '@react-three/drei';
+import { TransformControls, useGLTF } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -34,12 +34,9 @@ interface DynamicAssemblyProps {
   assemblyStep: number;
 }
 
-export function DynamicAssembly({
-  config,
-  onSelectPart,
-  assemblyStep
-}: DynamicAssemblyProps) {
+export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicAssemblyProps) {
   const [selectedNodeName, setSelectedNodeName] = useState<string | null>(null);
+  const [selectedObject, setSelectedObject] = useState<THREE.Object3D | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const partsRef = useRef<Record<string, THREE.Group>>({});
 
@@ -50,10 +47,12 @@ export function DynamicAssembly({
   const storageKey = `simvex-${config.productName.toLowerCase().replace(/\s/g, '-')}-transforms`;
 
   // Load saved transforms from localStorage on mount
+  // Load saved transforms from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSavedTransforms(JSON.parse(saved));
       }
     } catch (e) {
@@ -71,7 +70,7 @@ export function DynamicAssembly({
 
       return {
         ...finalConfig,
-        modelUrl
+        modelUrl,
       };
     });
   }, [config, savedTransforms]);
@@ -85,7 +84,7 @@ export function DynamicAssembly({
       if (nodeName === selectedNodeName) return;
 
       const group = partsRef.current[nodeName];
-      const part = assemblyParts.find(p => p.nodeName === nodeName);
+      const part = assemblyParts.find((p) => p.nodeName === nodeName);
 
       if (group && part) {
         const initialPos = new THREE.Vector3(...part.originalPosition);
@@ -116,15 +115,18 @@ export function DynamicAssembly({
 
     if (nodeName === selectedNodeName) {
       setSelectedNodeName(null);
+      setSelectedObject(null);
       onSelectPart?.(null, null);
     } else {
       setSelectedNodeName(nodeName);
+      setSelectedObject(partsRef.current[nodeName]);
       onSelectPart?.(nodeName, displayName);
     }
   };
 
   const handleBackgroundClick = () => {
     setSelectedNodeName(null);
+    setSelectedObject(null);
     onSelectPart?.(null, null);
   };
 
@@ -148,8 +150,13 @@ export function DynamicAssembly({
     const o = partsRef.current[nodeName];
     const newTransform = {
       originalPosition: [o.position.x, o.position.y, o.position.z] as [number, number, number],
-      originalRotation: [o.quaternion.x, o.quaternion.y, o.quaternion.z, o.quaternion.w] as [number, number, number, number],
-      originalScale: [o.scale.x, o.scale.y, o.scale.z] as [number, number, number]
+      originalRotation: [o.quaternion.x, o.quaternion.y, o.quaternion.z, o.quaternion.w] as [
+        number,
+        number,
+        number,
+        number,
+      ],
+      originalScale: [o.scale.x, o.scale.y, o.scale.z] as [number, number, number],
     };
 
     // Update state and localStorage
@@ -160,11 +167,7 @@ export function DynamicAssembly({
   };
 
   return (
-    <group
-      ref={groupRef}
-      onClick={handleBackgroundClick}
-      scale={config.scale || 1}
-    >
+    <group ref={groupRef} onClick={handleBackgroundClick} scale={config.scale || 1}>
       {assemblyParts.map((part) => (
         <PartRenderer
           key={part.nodeName}
@@ -176,9 +179,9 @@ export function DynamicAssembly({
           }}
         />
       ))}
-      {selectedNodeName && partsRef.current[selectedNodeName] && (
+      {selectedNodeName && selectedObject && (
         <TransformControls
-          object={partsRef.current[selectedNodeName]}
+          object={selectedObject}
           mode="translate"
           onObjectChange={handleTransformChange}
           onMouseUp={handleTransformEnd}
@@ -202,64 +205,60 @@ interface PartRendererProps {
 }
 
 // Sub-component to load and render individual GLB
-const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(
-  ({ part, selected, onClick }, ref) => {
-    const { scene } = useGLTF(part.modelUrl) as unknown as GLTFResult;
-    const initializedRef = useRef(false);
+const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(({ part, selected, onClick }, ref) => {
+  const { scene } = useGLTF(part.modelUrl) as unknown as GLTFResult;
+  const initializedRef = useRef(false);
 
-    const clone = useMemo(() => {
-      const c = scene.clone();
-      c.userData.originalName = part.nodeName;
-      return c;
-    }, [scene, part.nodeName]);
+  const clone = useMemo(() => {
+    const c = scene.clone();
+    c.userData.originalName = part.nodeName;
+    return c;
+  }, [scene, part.nodeName]);
 
-    // Apply Highlight
-    useEffect(() => {
-      clone.traverse((child: THREE.Object3D) => {
-        if (child instanceof THREE.Mesh && child.material) {
-          const material = child.material as THREE.MeshStandardMaterial;
-          if (selected) {
-            material.emissive = new THREE.Color(0x00aaff);
-            material.emissiveIntensity = 0.5;
-          } else {
-            material.emissive = new THREE.Color(0x000000);
-            material.emissiveIntensity = 0;
-          }
-        }
-      });
-    }, [clone, selected]);
-
-    // Apply Initial Transforms - only override if config has non-zero values
-    useEffect(() => {
-      if (ref && typeof ref !== 'function' && ref.current && !initializedRef.current) {
-        initializedRef.current = true;
-
-        // Check if originalPosition is non-zero (explicitly set in config)
-        const hasCustomPosition = part.originalPosition.some(v => v !== 0);
-        const hasCustomRotation = part.originalRotation.some((v, i) =>
-          i === 3 ? v !== 1 : v !== 0
-        ); // quaternion default is [0,0,0,1]
-        const hasCustomScale = part.originalScale.some(v => v !== 1);
-
-        // Only apply config transforms if they're explicitly set (non-default)
-        if (hasCustomPosition) {
-          ref.current.position.set(...part.originalPosition);
-        }
-        if (hasCustomRotation) {
-          ref.current.quaternion.set(...part.originalRotation);
-        }
-        if (hasCustomScale) {
-          ref.current.scale.set(...part.originalScale);
+  // Apply Highlight
+  useEffect(() => {
+    clone.traverse((child: THREE.Object3D) => {
+      if (child instanceof THREE.Mesh && child.material) {
+        const material = child.material as THREE.MeshStandardMaterial;
+        if (selected) {
+          material.emissive = new THREE.Color(0x00aaff);
+          material.emissiveIntensity = 0.5;
+        } else {
+          material.emissive = new THREE.Color(0x000000);
+          material.emissiveIntensity = 0;
         }
       }
-    }, [part, ref]);
+    });
+  }, [clone, selected]);
 
-    return (
-      <group ref={ref} onClick={onClick}>
-        <primitive object={clone} />
-      </group>
-    );
-  }
-);
+  // Apply Initial Transforms - only override if config has non-zero values
+  useEffect(() => {
+    if (ref && typeof ref !== 'function' && ref.current && !initializedRef.current) {
+      initializedRef.current = true;
+
+      // Check if originalPosition is non-zero (explicitly set in config)
+      const hasCustomPosition = part.originalPosition.some((v) => v !== 0);
+      const hasCustomRotation = part.originalRotation.some((v, i) => (i === 3 ? v !== 1 : v !== 0)); // quaternion default is [0,0,0,1]
+      const hasCustomScale = part.originalScale.some((v) => v !== 1);
+
+      // Only apply config transforms if they're explicitly set (non-default)
+      if (hasCustomPosition) {
+        ref.current.position.set(...part.originalPosition);
+      }
+      if (hasCustomRotation) {
+        ref.current.quaternion.set(...part.originalRotation);
+      }
+      if (hasCustomScale) {
+        ref.current.scale.set(...part.originalScale);
+      }
+    }
+  }, [part, ref]);
+
+  return (
+    <group ref={ref} onClick={onClick}>
+      <primitive object={clone} />
+    </group>
+  );
+});
 
 PartRenderer.displayName = 'PartRenderer';

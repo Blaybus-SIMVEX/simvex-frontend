@@ -28,37 +28,43 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
 
   useEffect(() => {
     if (objectId) {
-      console.log(objectId)
       fetchObjectDetail(objectId);
     }
   }, [objectId, fetchObjectDetail]);
 
   // nameEn에서 modelType 추출
-  const modelType = objectDetail?.nameEn
-    ? NAME_TO_MODEL_TYPE[objectDetail.nameEn] || 'robot-arm'
-    : 'robot-arm';
+  const modelType = objectDetail?.nameEn ? NAME_TO_MODEL_TYPE[objectDetail.nameEn] || 'robot-arm' : 'robot-arm';
 
   return (
     <div className="flex-1 h-full relative border border-[#ECECEC] rounded-lg overflow-hidden shadow-sm bg-white">
       <ThreeDViewer
-        modelType={modelType as 'engine' | 'drone' | 'robot-arm' | 'robot-gripper' | 'machine-vice' | 'leaf-spring' | 'suspension'}
+        modelType={
+          modelType as
+            | 'engine'
+            | 'drone'
+            | 'robot-arm'
+            | 'robot-gripper'
+            | 'machine-vice'
+            | 'leaf-spring'
+            | 'suspension'
+        }
         selectedPart={null}
         onSelectPart={(partName) => {
-           setSelectedPartName(partName);
-           if (partName) setIsInfoPanelOpen(true);
+          setSelectedPartName(partName);
+          if (partName) setIsInfoPanelOpen(true);
         }}
       />
 
       {/* Info Panel - Floating over 3D Viewer (Right side) */}
       {isInfoPanelOpen && (
         <div className="absolute top-4 right-4 bottom-4 z-20 animate-slide-in-right">
-          <InfoModal 
-            objectId={objectId} 
+          <InfoModal
+            objectId={objectId}
             onClose={() => {
               setSelectedPartName(null);
               setIsInfoPanelOpen(false);
-            }} 
-            selectedPartName={selectedPartName} 
+            }}
+            selectedPartName={selectedPartName}
           />
         </div>
       )}

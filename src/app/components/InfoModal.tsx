@@ -145,9 +145,7 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
                     key={i}
                     onClick={() => component && handleComponentClick(component.id)}
                     className={`aspect-square bg-[#F5F5F5] rounded-[4px] overflow-hidden flex items-center justify-center relative cursor-pointer transition-all ${
-                      isSelected
-                        ? 'border border-[#2C74FF]'
-                        : 'border border-gray-100 hover:border-gray-300'
+                      isSelected ? 'border border-[#2C74FF]' : 'border border-gray-100 hover:border-gray-300'
                     }`}
                   >
                     {component?.modelFileUrl ? (
@@ -175,7 +173,9 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
                         <h3 className="font-semibold text-[14px] text-[#171717] mb-[2px]">
                           {component.name} ({component.nameEn})
                         </h3>
-                        <p className="font-medium text-[12px] text-[#767676] leading-[140%] break-keep">{component.role}</p>
+                        <p className="font-medium text-[12px] text-[#767676] leading-[140%] break-keep">
+                          {component.role}
+                        </p>
                       </div>
                     ))
                 ) : (

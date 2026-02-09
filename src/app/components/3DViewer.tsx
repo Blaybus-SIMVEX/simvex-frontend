@@ -1,20 +1,19 @@
 'use client';
 
-import ViewerControls from './ViewerControls';
-import { DynamicAssembly, ProductConfig } from '@/app/components/DynamicAssembly';
-import { OrbitControls, Stage } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState, useRef } from 'react';
-import { useComponents } from '@/features/3d-viewer/api/use3DViewer';
-
 // Config imports
 import droneConfig from '../../../public/models/Drone/config.json';
-import engineConfig from '../../../public/models/V4_Engine/config.json';
-import robotArmConfig from '../../../public/models/Robot Arm/config.json';
-import machineViceConfig from '../../../public/models/Machine Vice/config.json';
 import leafSpringConfig from '../../../public/models/Leaf Spring/config.json';
+import machineViceConfig from '../../../public/models/Machine Vice/config.json';
+import robotArmConfig from '../../../public/models/Robot Arm/config.json';
 import robotGripperConfig from '../../../public/models/Robot Gripper/config.json';
 import suspensionConfig from '../../../public/models/Suspension/config.json';
+import engineConfig from '../../../public/models/V4_Engine/config.json';
+import ViewerControls from './ViewerControls';
+import { DynamicAssembly, ProductConfig } from '@/app/components/DynamicAssembly';
+import { useComponents } from '@/features/3d-viewer/api/use3DViewer';
+import { OrbitControls, Stage } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 interface SelectedPartInfo {
   partName: string;
@@ -31,7 +30,7 @@ const MODEL_CONFIGS: Record<string, ProductConfig> = {
   'machine-vice': machineViceConfig as unknown as ProductConfig,
   'leaf-spring': leafSpringConfig as unknown as ProductConfig,
   'robot-gripper': robotGripperConfig as unknown as ProductConfig,
-  'suspension': suspensionConfig as unknown as ProductConfig,
+  suspension: suspensionConfig as unknown as ProductConfig,
 };
 
 interface ThreeDViewerProps {
@@ -56,7 +55,6 @@ export default function ThreeDViewer({ onSelectPart, modelType }: ThreeDViewerPr
       fetchComponents(objectId);
     }
   }, [objectId, fetchComponents]);
-
 
   // Actually, just checking if assemblyStep is 0 might be enough, but the user might move it back to 0.
   // Let's use a ref for the timer.
@@ -94,11 +92,10 @@ export default function ThreeDViewer({ onSelectPart, modelType }: ThreeDViewerPr
       orbitControlsRef.current.dollyOut(1.2);
       orbitControlsRef.current.update();
     }
-
   };
 
   const handleZoomOut = () => {
-   if (orbitControlsRef.current) {
+    if (orbitControlsRef.current) {
       orbitControlsRef.current.dollyIn(1.2);
       orbitControlsRef.current.update();
     }

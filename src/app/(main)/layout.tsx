@@ -11,9 +11,7 @@ export default function Layout({ children }: Props) {
       <div className="flex-none z-50 h-[60px]">
         <Header />
       </div>
-      <main className="flex-1 overflow-y-auto bg-gray-100">
-        {children}
-      </main>
+      <main className="flex-1 overflow-y-auto bg-gray-100">{children}</main>
     </div>
   );
 }

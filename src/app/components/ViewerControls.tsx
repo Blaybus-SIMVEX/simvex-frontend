@@ -95,13 +95,13 @@ export default function ViewerControls({
 
       {/* 3. Zoom Controls (Bottom) */}
       <div className="flex flex-col gap-2 pointer-events-auto">
-        <button 
+        <button
           onClick={onZoomIn}
           className="w-[30px] h-[30px] flex items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors text-[#333333]"
         >
           <ZoomInIcon />
         </button>
-        <button 
+        <button
           onClick={onZoomOut}
           className="w-[30px] h-[30px] flex items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors text-[#333333]"
         >
