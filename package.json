@@ -9,13 +9,19 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\"",
-    "format:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\""
+    "format:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css}\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
-    "leva": "^0.10.1",
     "clsx": "^2.1.1",
+    "leva": "^0.10.1",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -34,6 +40,8 @@
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
