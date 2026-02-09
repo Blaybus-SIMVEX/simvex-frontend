@@ -7,7 +7,6 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function ObjectCard({ data, ...rest }: Props) {
-  console.log(data);
   return (
     <article
       className="
