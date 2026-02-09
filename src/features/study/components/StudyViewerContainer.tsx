@@ -38,6 +38,7 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
   return (
     <div className="flex-1 h-full relative border border-[#ECECEC] rounded-lg overflow-hidden shadow-sm bg-white">
       <ThreeDViewer
+        key={modelType}
         modelType={
           modelType as
             | 'engine'
@@ -65,6 +66,7 @@ export default function StudyViewerContainer({ objectId }: StudyViewerContainerP
               setIsInfoPanelOpen(false);
             }}
             selectedPartName={selectedPartName}
+            onSelectPart={setSelectedPartName}
           />
         </div>
       )}

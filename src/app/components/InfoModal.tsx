@@ -15,9 +15,10 @@ interface InfoModalProps {
   objectId: number;
   onClose?: () => void;
   selectedPartName?: string | null;
+  onSelectPart?: (partName: string | null) => void;
 }
 
-export default function InfoModal({ objectId, onClose, selectedPartName }: InfoModalProps) {
+export default function InfoModal({ objectId, onClose, selectedPartName, onSelectPart }: InfoModalProps) {
   const [activeTab, setActiveTab] = useState<'product' | 'detail'>('product');
   const [selectedComponentIds, setSelectedComponentIds] = useState<Set<number>>(new Set());
 
@@ -45,20 +46,28 @@ export default function InfoModal({ objectId, onClose, selectedPartName }: InfoM
   // 부품 선택 시 detail 탭으로 전환 및 해당 부품 선택 (로딩 완료 후)
   useEffect(() => {
     if (!isLoading && selectedPartName && objectDetail?.components) {
-      setActiveTab('detail');
-      // 선택된 부품 이름으로 컴포넌트 찾아서 선택
-      const selectedComponent = objectDetail.components.find(
-        (component: IComponent) => component.name === selectedPartName || component.nameEn === selectedPartName,
-      );
-      if (selectedComponent) {
-        setSelectedComponentIds(new Set([selectedComponent.id]));
-      }
+      // Defer state updates to avoid cascading renders warning
+      const timer = setTimeout(() => {
+        if (activeTab !== 'detail') {
+          setActiveTab('detail');
+        }
+        // 선택된 부품 이름으로 컴포넌트 찾아서 선택
+        const selectedComponent = objectDetail.components.find(
+          (component: IComponent) => component.name === selectedPartName || component.nameEn === selectedPartName,
+        );
+        if (selectedComponent) {
+          setSelectedComponentIds(new Set([selectedComponent.id]));
+        }
+      }, 0);
+      return () => clearTimeout(timer);
     }
-  }, [isLoading, selectedPartName, objectDetail?.components]);
+  }, [isLoading, selectedPartName, objectDetail?.components, activeTab]);
 
   // 완제품 탭 클릭
   const handleProductTabClick = () => {
     setActiveTab('product');
+    setSelectedComponentIds(new Set());
+    onSelectPart?.(null);
   };
 
   if (isLoading) {
