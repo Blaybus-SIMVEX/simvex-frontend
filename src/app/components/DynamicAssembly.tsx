@@ -1,7 +1,7 @@
 'use client';
 
 import { IComponent } from '@/features/3d-viewer/types';
-import { TransformControls, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { ThreeEvent, useFrame } from '@react-three/fiber';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -36,7 +36,6 @@ interface DynamicAssemblyProps {
 
 export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicAssemblyProps) {
   const [selectedNodeName, setSelectedNodeName] = useState<string | null>(null);
-  const [selectedObject, setSelectedObject] = useState<THREE.Object3D | null>(null);
   const groupRef = useRef<THREE.Group>(null);
   const partsRef = useRef<Record<string, THREE.Group>>({});
 
@@ -44,7 +43,7 @@ export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicA
   const [savedTransforms, setSavedTransforms] = useState<Record<string, Partial<PartConfig>>>({});
 
   // localStorage key based on product name
-  const storageKey = `simvex-${config.productName.toLowerCase().replace(/\s/g, '-')}-transforms`;
+  const storageKey = `simvex-${config.productName.toLowerCase().replace(/\s/g, '-')}-transforms-v2`;
 
   // Load saved transforms from localStorage on mount
   // Load saved transforms from localStorage on mount
@@ -115,55 +114,16 @@ export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicA
 
     if (nodeName === selectedNodeName) {
       setSelectedNodeName(null);
-      setSelectedObject(null);
       onSelectPart?.(null, null);
     } else {
       setSelectedNodeName(nodeName);
-      setSelectedObject(partsRef.current[nodeName]);
       onSelectPart?.(nodeName, displayName);
     }
   };
 
   const handleBackgroundClick = () => {
     setSelectedNodeName(null);
-    setSelectedObject(null);
     onSelectPart?.(null, null);
-  };
-
-  const handleTransformChange = () => {
-    const nodeName = selectedNodeName;
-    if (!nodeName || !partsRef.current[nodeName]) return;
-
-    const o = partsRef.current[nodeName];
-
-    // Log to console for developer mode
-    console.log(`Part: ${nodeName} Transformed`);
-    console.log(`"originalPosition": [${o.position.x}, ${o.position.y}, ${o.position.z}],`);
-    console.log(`"originalRotation": [${o.quaternion.x}, ${o.quaternion.y}, ${o.quaternion.z}, ${o.quaternion.w}],`);
-    console.log(`"originalScale": [${o.scale.x}, ${o.scale.y}, ${o.scale.z}]`);
-  };
-
-  const handleTransformEnd = () => {
-    const nodeName = selectedNodeName;
-    if (!nodeName || !partsRef.current[nodeName]) return;
-
-    const o = partsRef.current[nodeName];
-    const newTransform = {
-      originalPosition: [o.position.x, o.position.y, o.position.z] as [number, number, number],
-      originalRotation: [o.quaternion.x, o.quaternion.y, o.quaternion.z, o.quaternion.w] as [
-        number,
-        number,
-        number,
-        number,
-      ],
-      originalScale: [o.scale.x, o.scale.y, o.scale.z] as [number, number, number],
-    };
-
-    // Update state and localStorage
-    const newTransforms = { ...savedTransforms, [nodeName]: newTransform };
-    setSavedTransforms(newTransforms);
-    localStorage.setItem(storageKey, JSON.stringify(newTransforms));
-    console.log('Saved transform to localStorage:', storageKey);
   };
 
   return (
@@ -179,14 +139,6 @@ export function DynamicAssembly({ config, onSelectPart, assemblyStep }: DynamicA
           }}
         />
       ))}
-      {selectedNodeName && selectedObject && (
-        <TransformControls
-          object={selectedObject}
-          mode="translate"
-          onObjectChange={handleTransformChange}
-          onMouseUp={handleTransformEnd}
-        />
-      )}
     </group>
   );
 }
@@ -207,7 +159,10 @@ interface PartRendererProps {
 // Sub-component to load and render individual GLB
 const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(({ part, selected, onClick }, ref) => {
   const { scene } = useGLTF(part.modelUrl) as unknown as GLTFResult;
-  const initializedRef = useRef(false);
+  const localRef = useRef<THREE.Group>(null);
+
+  // Expose the local ref to the parent
+  React.useImperativeHandle(ref, () => localRef.current as THREE.Group);
 
   const clone = useMemo(() => {
     const c = scene.clone();
@@ -231,31 +186,18 @@ const PartRenderer = React.forwardRef<THREE.Group, PartRendererProps>(({ part, s
     });
   }, [clone, selected]);
 
-  // Apply Initial Transforms - only override if config has non-zero values
+  // Apply Initial Transforms from config
   useEffect(() => {
-    if (ref && typeof ref !== 'function' && ref.current && !initializedRef.current) {
-      initializedRef.current = true;
-
-      // Check if originalPosition is non-zero (explicitly set in config)
-      const hasCustomPosition = part.originalPosition.some((v) => v !== 0);
-      const hasCustomRotation = part.originalRotation.some((v, i) => (i === 3 ? v !== 1 : v !== 0)); // quaternion default is [0,0,0,1]
-      const hasCustomScale = part.originalScale.some((v) => v !== 1);
-
-      // Only apply config transforms if they're explicitly set (non-default)
-      if (hasCustomPosition) {
-        ref.current.position.set(...part.originalPosition);
-      }
-      if (hasCustomRotation) {
-        ref.current.quaternion.set(...part.originalRotation);
-      }
-      if (hasCustomScale) {
-        ref.current.scale.set(...part.originalScale);
-      }
+    if (localRef.current) {
+      // Always apply transforms from config
+      localRef.current.position.set(...part.originalPosition);
+      localRef.current.quaternion.set(...part.originalRotation);
+      localRef.current.scale.set(...part.originalScale);
     }
-  }, [part, ref]);
+  }, [part.nodeName, part.originalPosition, part.originalRotation, part.originalScale]);
 
   return (
-    <group ref={ref} onClick={onClick}>
+    <group ref={localRef} onClick={onClick}>
       <primitive object={clone} />
     </group>
   );
