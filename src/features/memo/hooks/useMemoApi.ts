@@ -30,22 +30,37 @@ export const useMemoActions = () => {
   const { POST: create, PUT: update, DELETE: remove, isLoading, error } = useApi<IApiResponse<IMemo>>();
 
   const createMemo = useCallback(
-    async (objectId: number, sessionId: string, content: string) => {
-      return create(`/api/objects/${objectId}/memos?sessionId=${sessionId}`, { content });
+    async (objectId: number, token: string, content: string) => {
+      return create(
+        `/api/objects/${objectId}/memos`,
+        { content }, // Body
+        {
+          headers: { sessionToken: token },
+        },
+      );
     },
     [create],
   );
 
   const updateMemo = useCallback(
-    async (memoId: number, sessionId: string, content: string) => {
-      return update(`/api/memos/${memoId}?sessionId=${sessionId}`, { content });
+    async (memoId: number, token: string, content: string) => {
+      return update(
+        `/api/memos/${memoId}`,
+        { content }, // Body
+        {
+          headers: { sessionToken: token },
+        },
+      );
     },
     [update],
   );
 
   const deleteMemo = useCallback(
-    async (memoId: number, sessionId: string) => {
-      return remove(`/api/memos/${memoId}?sessionId=${sessionId}`);
+    async (memoId: number, token: string) => {
+      // DELETE는 Body가 없으므로 두 번째 인자가 바로 options입니다.
+      return remove(`/api/memos/${memoId}`, {
+        headers: { sessionToken: token },
+      });
     },
     [remove],
   );

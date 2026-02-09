@@ -40,16 +40,18 @@ export default function MemoPad({ objectId }: MemoPadProps) {
   }, [objectId, sessionToken, fetchMemos, currentPage]);
 
   const handleAddMemo = async () => {
-    if (!newMemoText.trim() || isActioning) return;
+    const token = localStorage.getItem('session-token');
+
+    if (!token || !newMemoText.trim() || isActioning) return;
 
     try {
-      await createMemo(objectId, sessionToken, newMemoText.trim());
+      await createMemo(objectId, token, newMemoText.trim());
+
       setNewMemoText('');
       setIsAdding(false);
-      setCurrentPage(1);
-      fetchMemos(objectId, sessionToken, 1, pageSize);
+      fetchMemos(objectId, token, 1, 8);
     } catch (e) {
-      console.error('Failed to create memo', e);
+      console.error('메모 생성 실패', e);
     }
   };
 
@@ -96,7 +98,7 @@ export default function MemoPad({ objectId }: MemoPadProps) {
         <button
           onClick={() => setIsAdding(true)}
           disabled={isActioning}
-          className="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full border border-[#2C74FF] text-[#2C74FF] text-[12px] font-semibold bg-white hover:bg-blue-50 transition-colors disabled:opacity-50"
+          className="cursor-pointer flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full border border-[#2C74FF] text-[#2C74FF] text-[12px] font-semibold bg-white hover:bg-blue-50 transition-colors disabled:opacity-50"
         >
           추가하기
           <svg
@@ -138,14 +140,14 @@ export default function MemoPad({ objectId }: MemoPadProps) {
                     setIsAdding(false);
                     setNewMemoText('');
                   }}
-                  className="text-xs text-gray-500 hover:text-gray-800"
+                  className="cursor-pointer text-xs text-gray-500 hover:text-gray-800"
                 >
                   취소
                 </button>
                 <button
                   onClick={handleAddMemo}
                   disabled={isActioning || !newMemoText.trim()}
-                  className="text-xs bg-[#2C74FF] text-white px-3 py-1 rounded hover:bg-blue-600 disabled:opacity-50"
+                  className="cursor-pointer text-xs bg-[#2C74FF] text-white px-3 py-1 rounded hover:bg-blue-600 disabled:opacity-50"
                 >
                   저장
                 </button>
