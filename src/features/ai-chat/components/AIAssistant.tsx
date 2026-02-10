@@ -8,11 +8,17 @@ interface AIAssistantProps {
   objectId: number;
 }
 
+interface ChatHistoryItem {
+  role: 'USER' | 'ASSISTANT';
+  content: string;
+  createdAt: string;
+}
+
 export default function AIAssistant({ objectId }: AIAssistantProps) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const { messages, sendMessage, isLoading } = useChatStream([
+  const { messages, sendMessage, isLoading, setMessages } = useChatStream([
     {
       id: 'welcome',
       role: 'assistant',
@@ -20,6 +26,46 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
     },
   ]);
 
+  useEffect(() => {
+    const fetchHistory = async () => {
+      const token = localStorage.getItem('session-token');
+      if (!token || !objectId) return;
+
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/ai/chat/history?object3dId=${objectId}`, {
+          method: 'GET',
+          headers: {
+            accept: '*/*',
+            sessionToken: token,
+          },
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch history');
+
+        const json = await res.json();
+        const historyData: ChatHistoryItem[] = json.data;
+
+        if (historyData && historyData.length > 0) {
+          const formattedHistory = historyData.map((item, index) => ({
+            id: `history-${index}-${item.createdAt}`,
+            role: item.role.toLowerCase() as 'user' | 'assistant',
+            content: item.content,
+          }));
+
+          setMessages((prev) => {
+            if (prev.length > 1) return prev;
+            return [prev[0], ...formattedHistory];
+          });
+        }
+      } catch (error) {
+        console.error('대화 내역 조회 실패:', error);
+      }
+    };
+
+    fetchHistory();
+  }, [objectId, setMessages]);
+
+  // 스크롤 처리
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -41,8 +87,6 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
     return content.replace(/([^\n])(- )/g, '$1\n$2').replace(/([^\n])(\d+\. )/g, '$1\n$2');
   };
 
-  console.log(messages);
-
   return (
     <div className="flex flex-col h-full bg-white">
       {/* Header */}
@@ -61,22 +105,15 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
                   : 'bg-white text-[#333333] border border-[#E5E5E5] rounded-[18px] rounded-tl-[4px] shadow-sm'
               }`}
             >
-              {/* ▼▼▼ 여기서부터 수정된 부분입니다 ▼▼▼ */}
               {message.role === 'user' ? (
                 message.content
               ) : (
                 <ReactMarkdown
-                  // Markdown 내부 스타일 정의 (리스트, 문단 간격 등)
                   components={{
-                    // ul(점 리스트) 스타일: 왼쪽 여백(pl-5), 점 스타일(list-disc)
                     ul: ({ ...props }) => <ul className="list-disc pl-5 space-y-1 my-2" {...props} />,
-                    // ol(숫자 리스트) 스타일
                     ol: ({ ...props }) => <ol className="list-decimal pl-5 space-y-1 my-2" {...props} />,
-                    // li(리스트 아이템) 스타일
                     li: ({ ...props }) => <li className="pl-1" {...props} />,
-                    // p(문단) 스타일: 문단 사이에 간격 추가
                     p: ({ ...props }) => <p className="mb-2 last:mb-0 whitespace-pre-wrap" {...props} />,
-                    // strong(굵게) 스타일
                     strong: ({ ...props }) => <span className="font-bold text-inherit" {...props} />,
                   }}
                 >

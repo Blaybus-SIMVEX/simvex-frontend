@@ -54,5 +54,5 @@ export function useChatStream(initialMessages: Message[] = []) {
     );
   }, []);
 
-  return { messages, sendMessage, isLoading };
+  return { messages, sendMessage, isLoading, setMessages };
 }
