@@ -17,7 +17,6 @@ export default function MemoPad({ objectId }: MemoPadProps) {
   const [isAdding, setIsAdding] = useState(false);
   const [newMemoText, setNewMemoText] = useState('');
 
-  // 로컬 스토리지 토큰 관리 (State 제거하고 바로 읽기 권장하지만, 기존 코드 스타일 존중)
   const [sessionToken, setSessionToken] = useState('');
 
   useEffect(() => {
@@ -28,8 +27,6 @@ export default function MemoPad({ objectId }: MemoPadProps) {
 
   useEffect(() => {
     if (objectId && sessionToken) {
-      // 최신순 정렬을 위해 API에서 sort=createdAt,desc 등을 지원하면 좋습니다.
-      // 지원하지 않는다면 받아온 데이터를 클라이언트에서 뒤집어야 합니다.
       fetchMemos(objectId, sessionToken, currentPage, pageSize);
     }
   }, [objectId, sessionToken, fetchMemos, currentPage]);
