@@ -14,25 +14,25 @@ export default async function StudyDetail({ params }: StudyDetailProps) {
   const objectId = Number(resolvedParams.detail);
 
   return (
-    <div className="flex flex-col w-full h-[calc(100vh-64px)] bg-[#F5F5F5] px-10 pt-8 pb-6 gap-4">
-      {/* Header Area - Vertical Stack */}
-      <StudyHeader objectId={objectId} />
+    <div className="w-full h-[calc(100vh-64px)] bg-[#F5F5F5] overflow-y-auto">
+      <div className="flex flex-col w-full h-full min-h-[700px] px-10 pt-8 pb-6 gap-4">
+        {/* Header Area */}
+        <StudyHeader objectId={objectId} />
 
-      {/* Content Area */}
-      <div className="flex flex-1 w-full gap-4 overflow-hidden">
-        {/* Main Content - 3D Viewer & Info Modal Container */}
-        <StudyViewerContainer objectId={objectId} />
+        {/* Content Area */}
+        <div className="flex flex-1 w-full gap-4 min-h-0">
+          {/* Main Content */}
+          <StudyViewerContainer objectId={objectId} />
 
-        {/* Sidebar - AI & Memo (Fixed 384px) */}
-        <div className="w-[384px] min-w-[384px] h-full flex flex-col gap-4 shrink-0">
-          {/* AI Assistant - Fixed Height 414px */}
-          <div className="h-[414px] shrink-0">
-            <AIAssistant objectId={objectId} />
-          </div>
+          {/* Sidebar - AI & Memo (Fixed 384px) */}
+          <div className="w-[384px] min-w-[384px] h-full flex flex-col gap-4 shrink-0">
+            <div className="h-full flex-1 min-h-0">
+              <AIAssistant objectId={objectId} />
+            </div>
 
-          {/* Memo Pad - Fixed Height 200px (Remaining space) */}
-          <div className="h-[200px] shrink-0">
-            <MemoPad objectId={objectId} />
+            <div className="shrink-0">
+              <MemoPad objectId={objectId} />
+            </div>
           </div>
         </div>
       </div>
