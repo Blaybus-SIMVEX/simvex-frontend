@@ -43,9 +43,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'kr.object.ncloudstorage.com', // 👈 에러에 뜬 도메인
+        hostname: 'kr.object.ncloudstorage.com',
         port: '',
-        pathname: '/**', // 모든 경로 허용
+        pathname: '/**',
       },
     ],
   },

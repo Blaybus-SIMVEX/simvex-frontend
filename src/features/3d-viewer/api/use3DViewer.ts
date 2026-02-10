@@ -1,4 +1,4 @@
-import { IApiResponse, IComponent, IComponentList, IMemo, IMemoList, IObjectDetail } from '../types';
+import { IApiResponse, IComponent, IComponentList, IObjectDetail } from '../types';
 import { useApi } from '@/lib/useApi';
 import { useCallback } from 'react';
 
@@ -39,44 +39,4 @@ export const useComponentDetail = () => {
   );
 
   return { componentDetail: data?.data, isLoading, error, fetchComponentDetail };
-};
-
-export const useMemos = () => {
-  const { data, isLoading, error, GET } = useApi<IApiResponse<IMemoList>>();
-
-  const fetchMemos = useCallback(
-    async (objectId: number, sessionId: string) => {
-      return GET(`/api/objects/${objectId}/memos?sessionId=${sessionId}`);
-    },
-    [GET],
-  );
-
-  return { memos: data?.data?.content || [], isLoading, error, fetchMemos };
-};
-
-export const useMemoActions = () => {
-  const { POST: create, PUT: update, DELETE: remove, isLoading, error } = useApi<IApiResponse<IMemo>>();
-
-  const createMemo = useCallback(
-    async (objectId: number, sessionId: string, content: string) => {
-      return create(`/api/objects/${objectId}/memos?sessionId=${sessionId}`, { content });
-    },
-    [create],
-  );
-
-  const updateMemo = useCallback(
-    async (memoId: number, sessionId: string, content: string) => {
-      return update(`/api/memos/${memoId}?sessionId=${sessionId}`, { content });
-    },
-    [update],
-  );
-
-  const deleteMemo = useCallback(
-    async (memoId: number, sessionId: string) => {
-      return remove(`/api/memos/${memoId}?sessionId=${sessionId}`);
-    },
-    [remove],
-  );
-
-  return { createMemo, updateMemo, deleteMemo, isLoading, error };
 };
