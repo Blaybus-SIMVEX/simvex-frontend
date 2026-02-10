@@ -36,6 +36,13 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
     await sendMessage(currentInput, objectId);
   };
 
+  const preprocessContent = (content: string) => {
+    if (!content) return '';
+    return content.replace(/([^\n])(- )/g, '$1\n$2').replace(/([^\n])(\d+\. )/g, '$1\n$2');
+  };
+
+  console.log(messages);
+
   return (
     <div className="flex flex-col h-full bg-white">
       {/* Header */}
@@ -73,7 +80,7 @@ export default function AIAssistant({ objectId }: AIAssistantProps) {
                     strong: ({ ...props }) => <span className="font-bold text-inherit" {...props} />,
                   }}
                 >
-                  {message.content}
+                  {preprocessContent(message.content)}
                 </ReactMarkdown>
               )}
             </div>
